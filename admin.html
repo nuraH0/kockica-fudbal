@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bs">
 
@@ -7,16 +8,21 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <title>Kockica | Admin</title>
 
-    <link rel="stylesheet" href="admin.css">
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
 
     <!-- ZAŠTITA ADMIN STRANICE -->
     <script>
-        if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+        if (
+            sessionStorage.getItem("adminLoggedIn") !== "true"
+        ) {
             window.location.href = "login.html";
         }
     </script>
@@ -27,17 +33,33 @@
 <body>
 
 
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
     <header class="admin-navbar">
 
-        <a href="index.html" class="admin-logo">
+        <a
+            href="index.html"
+            class="admin-logo"
+        >
+
             <img
                 src="images/logo.png"
                 alt="Kockica"
             >
+
         </a>
 
 
-        <div style="display: flex; align-items: center; gap: 15px;">
+        <div
+            class="admin-navbar-actions"
+            style="
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            "
+        >
 
             <a
                 href="index.html"
@@ -45,6 +67,7 @@
             >
                 ← JAVNA STRANICA
             </a>
+
 
             <button
                 type="button"
@@ -59,10 +82,16 @@
     </header>
 
 
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main class="admin-main">
 
 
-        <!-- NASLOV -->
+        <!-- =================================================
+             INTRO
+        ================================================== -->
 
         <section class="admin-intro">
 
@@ -70,10 +99,12 @@
                 KOCKICA FUTBAL / ADMIN
             </p>
 
+
             <h1>
                 Upravljanje
                 <span>terminima.</span>
             </h1>
+
 
             <p>
                 Ovdje možeš dodavati, uređivati
@@ -83,24 +114,34 @@
         </section>
 
 
-        <!-- DODAVANJE -->
+        <!-- =================================================
+             ADMIN GRID
+        ================================================== -->
 
         <section class="admin-grid">
 
+
+            <!-- =================================================
+                 DODAVANJE TERMINA
+            ================================================== -->
 
             <div class="admin-card form-card">
 
                 <div class="card-top">
 
                     <div>
+
                         <span class="card-number">
                             01
                         </span>
 
+
                         <h2>
                             Dodaj termin
                         </h2>
+
                     </div>
+
 
                     <span class="card-label">
                         NOVI TERMIN
@@ -112,23 +153,44 @@
                 <form id="termin-form">
 
 
+                    <!-- =========================================
+                         DATUM
+                    ========================================== -->
+
                     <div class="input-group">
 
                         <label for="datum">
                             DATUM
                         </label>
 
+
                         <input
-    type="date"
-    id="datum"
-    required
->
+                            type="text"
+                            id="datum"
+                            name="datum"
+                            placeholder="DD.MM.GGGG."
+                            inputmode="numeric"
+                            autocomplete="off"
+                            maxlength="11"
+                            required
+                        >
+
+
+                        <small class="input-hint">
+                            Npr. 01.10.2026.
+                        </small>
 
                     </div>
 
 
+                    <!-- =========================================
+                         VRIJEME
+                    ========================================== -->
+
                     <div class="time-row">
 
+
+                        <!-- OD -->
 
                         <div class="input-group">
 
@@ -136,17 +198,27 @@
                                 OD
                             </label>
 
-                           <input
-    type="time"
-    id="vrijeme-od"
-    min="07:00"
-    max="22:30"
-    step="1800"
-    required
->
+
+                            <input
+                                type="text"
+                                id="vrijeme-od"
+                                name="vrijemeOd"
+                                placeholder="HH:MM"
+                                inputmode="numeric"
+                                autocomplete="off"
+                                maxlength="5"
+                                required
+                            >
+
+
+                            <small class="input-hint">
+                                24h format
+                            </small>
 
                         </div>
 
+
+                        <!-- DO -->
 
                         <div class="input-group">
 
@@ -154,20 +226,32 @@
                                 DO
                             </label>
 
-                           <input
-    type="time"
-    id="vrijeme-do"
-    min="07:30"
-    max="23:00"
-    step="1800"
-    required
->
+
+                            <input
+                                type="text"
+                                id="vrijeme-do"
+                                name="vrijemeDo"
+                                placeholder="HH:MM"
+                                inputmode="numeric"
+                                autocomplete="off"
+                                maxlength="5"
+                                required
+                            >
+
+
+                            <small class="input-hint">
+                                24h format
+                            </small>
 
                         </div>
 
 
                     </div>
 
+
+                    <!-- =========================================
+                         SUBMIT
+                    ========================================== -->
 
                     <button
                         type="submit"
@@ -179,6 +263,10 @@
                     </button>
 
 
+                    <!-- =========================================
+                         CANCEL EDIT
+                    ========================================== -->
+
                     <button
                         type="button"
                         class="admin-cancel"
@@ -188,6 +276,10 @@
                         ODUSTANI
                     </button>
 
+
+                    <!-- =========================================
+                         EDIT ID
+                    ========================================== -->
 
                     <input
                         type="hidden"
@@ -199,7 +291,9 @@
             </div>
 
 
-            <!-- INFORMACIJE -->
+            <!-- =================================================
+                 INFORMACIJE
+            ================================================== -->
 
             <div class="admin-card info-card-admin">
 
@@ -207,9 +301,11 @@
                     02
                 </span>
 
+
                 <h2>
                     Raspored
                 </h2>
+
 
                 <p>
                     Uneseni termini će se prikazivati
@@ -219,22 +315,28 @@
 
                 <div class="status-explanation">
 
+
                     <div>
+
                         <i class="green-dot"></i>
 
                         <span>
                             Slobodan termin
                         </span>
+
                     </div>
 
 
                     <div>
+
                         <i class="red-dot"></i>
 
                         <span>
                             Zauzet termin
                         </span>
+
                     </div>
+
 
                 </div>
 
@@ -244,9 +346,12 @@
         </section>
 
 
-        <!-- POSTOJEĆI TERMINI -->
+        <!-- =================================================
+             POSTOJEĆI TERMINI
+        ================================================== -->
 
         <section class="existing-section">
+
 
             <div class="existing-header">
 
@@ -256,11 +361,13 @@
                         RASPORED
                     </p>
 
+
                     <h2>
                         Postojeći termini
                     </h2>
 
                 </div>
+
 
                 <span class="existing-count">
                     TERMINI
@@ -292,11 +399,16 @@
     </main>
 
 
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <footer class="admin-footer">
 
         <span>
             KOCKICA FUTBAL
         </span>
+
 
         <span>
             ADMIN PANEL
@@ -305,13 +417,20 @@
     </footer>
 
 
+    <!-- =====================================================
+         LOGOUT
+    ====================================================== -->
+
     <script>
 
         function odjaviAdmina() {
 
-            sessionStorage.removeItem("adminLoggedIn");
+            sessionStorage.removeItem(
+                "adminLoggedIn"
+            );
 
-            window.location.href = "login.html";
+            window.location.href =
+                "login.html";
 
         }
 
@@ -327,3 +446,4 @@
 </body>
 
 </html>
+```

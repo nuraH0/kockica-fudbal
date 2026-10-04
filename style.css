@@ -2475,3 +2475,176 @@ footer {
         padding-inline: 4px;
     }
 }
+
+
+
+/* =========================================
+   KOCKICA FOOTBALL — PREMIUM MOBILE MENU
+========================================= */
+
+#menuToggle {
+    position: relative;
+    z-index: 1002;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    border: 1px solid rgba(245, 196, 0, 0.25);
+    border-radius: 15px;
+    background: #151515;
+    cursor: pointer;
+    transition: background .3s ease, border-color .3s ease;
+}
+
+#menuToggle:hover {
+    background: #24200e;
+    border-color: #f5c400;
+}
+
+#menuToggle span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    border-radius: 5px;
+    background: #f5c400;
+    transition:
+        transform .35s cubic-bezier(.22, 1, .36, 1),
+        opacity .2s ease,
+        width .3s ease;
+}
+
+#menuToggle span:nth-child(2) {
+    width: 15px;
+    margin-left: 6px;
+}
+
+/* Animacija u X */
+
+body.menu-open #menuToggle span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+body.menu-open #menuToggle span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+body.menu-open #menuToggle span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobilni meni */
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100dvh;
+    padding:
+        max(110px, calc(env(safe-area-inset-top) + 95px))
+        28px
+        max(35px, env(safe-area-inset-bottom));
+    background:
+        radial-gradient(
+            ellipse at 90% 5%,
+            rgba(245, 196, 0, .10),
+            transparent 42%
+        ),
+        #090909;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease,
+        transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+body.menu-open .mobile-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Navigacijski linkovi */
+
+.mobile-menu a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 19px 2px;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+    color: #f5f5f5;
+    font-size: clamp(25px, 7vw, 36px);
+    font-weight: 750;
+    letter-spacing: -1.2px;
+    text-decoration: none;
+    transition: color .25s ease, padding-left .25s ease;
+}
+
+.mobile-menu a::after {
+    content: "↗";
+    color: #f5c400;
+    font-size: 20px;
+    opacity: .65;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.mobile-menu a:hover {
+    color: #f5c400;
+    padding-left: 10px;
+}
+
+.mobile-menu a:hover::after {
+    opacity: 1;
+    transform: translate(3px, -3px);
+}
+
+/* Zatvaranje menija */
+
+.mobile-close {
+    position: absolute;
+    top: max(25px, env(safe-area-inset-top));
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    background: #191919;
+    color: #f5c400;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Donji dio menija */
+
+.mobile-menu::after {
+    content: "IZAĐI. IGRAJ.";
+    display: block;
+    margin-top: auto;
+    padding-top: 55px;
+    color: rgba(245,196,0,.55);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none;
+    }
+}

@@ -1,555 +1,628 @@
-<title>Kockica Football — Izađi. Igraj.</title>
+```html
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
 
-<meta
-    name="description"
-    content="Kockica Football — rezerviši svoj termin za fudbal."
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-<meta name="theme-color" content="#080808">
+    <title>Kockica Football — Izađi. Igraj.</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="description"
+        content="Kockica Football — rezerviši svoj termin za fudbal."
+    >
 
-<link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <meta name="theme-color" content="#090909">
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<!-- MOBILE MENU -->
+<body>
 
-<input
-    type="checkbox"
-    id="menuToggle"
-    class="menu-toggle"
-    aria-hidden="true"
->
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
 
-<div class="mobile-menu">
-
-    <div class="mobile-menu-top">
-
-        <a href="#" class="mobile-logo" aria-label="Kockica Football">
-            <img
-                src="images/logo.png"
-                alt="Kockica Football"
-            >
-        </a>
-
-        <label
-            for="menuToggle"
-            class="mobile-close"
-            aria-label="Zatvori meni"
-        >
-            <span></span>
-            <span></span>
-        </label>
-
-    </div>
-
-    <nav class="mobile-nav" aria-label="Mobilna navigacija">
-
-        <a href="#termini">
-            <small>01</small>
-            <strong>Termini</strong>
-        </a>
-
-        <a href="#teren">
-            <small>02</small>
-            <strong>Teren</strong>
-        </a>
-
-        <a href="#galerija">
-            <small>03</small>
-            <strong>Galerija</strong>
-        </a>
-
-    </nav>
-
-    <div class="mobile-menu-bottom">
-        <span>KOCKICA FOOTBALL</span>
-        <span>MOŠEVAC</span>
-    </div>
-
-</div>
-
-
-<!-- NAVBAR -->
-
-<header class="navbar">
-
-    <a
-        href="#"
-        class="logo"
-        aria-label="Kockica Football početna"
-    >
-        <img
-            src="images/logo.png"
-            alt="Kockica Football"
-        >
-    </a>
-
-    <nav class="desktop-nav" aria-label="Glavna navigacija">
-
-        <a href="#termini">Termini</a>
-        <a href="#teren">Teren</a>
-        <a href="#galerija">Galerija</a>
-
-    </nav>
-
-    <div class="nav-right">
-
-        <a
-            href="#termini"
-            class="nav-button"
-        >
-            <span>Rezerviši termin</span>
-            <span class="nav-button-arrow">↗</span>
-        </a>
-
-        <label
-            for="menuToggle"
-            class="menu-button"
-            aria-label="Otvori meni"
-        >
-            <span></span>
-            <span></span>
-        </label>
-
-    </div>
-
-</header>
-
-
-<main>
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-media">
-            <img
-                src="images/teren1.jpeg"
-                alt="Kockica Football teren"
-                fetchpriority="high"
-            >
-        </div>
-
-        <div class="hero-gradient"></div>
-        <div class="hero-glow"></div>
-
-        <div class="hero-content">
-
-            <div class="hero-kicker">
-
-                <span class="live-dot"></span>
-
-                <span>TEREN JE OTVOREN</span>
-
-                <i></i>
-
-                <span>MOŠEVAC</span>
-
-            </div>
-
-            <h1>
-                IZAĐI.
-                <strong>IGRAJ.</strong>
-            </h1>
-
-            <p class="hero-description">
-                Tvoj teren.
-                <br>
-                Tvoja ekipa.
-                <br>
-                Tvoja utakmica.
-            </p>
-
-            <div class="hero-actions">
-
-                <a
-                    href="#termini"
-                    class="button button-yellow"
-                >
-                    <span>Rezerviši termin</span>
-                    <b>↗</b>
-                </a>
-
-                <a
-                    href="#teren"
-                    class="button button-glass"
-                >
-                    <span>Upoznaj teren</span>
-                    <b>↓</b>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="hero-stats">
-
-            <div class="hero-stat">
-                <strong>01</strong>
-                <span>TEREN</span>
-            </div>
-
-            <div class="hero-stat">
-                <strong>5 × 5</strong>
-                <span>IGRAČA</span>
-            </div>
-
-            <div class="hero-stat">
-                <strong>24/7</strong>
-                <span>REZERVACIJE</span>
-            </div>
-
-        </div>
-
-
-        <a
-            href="#termini"
-            class="hero-scroll"
-            aria-label="Idi na rezervaciju"
-        >
-            <span>SCROLL</span>
-            <i></i>
-        </a>
-
-    </section>
-
-
-    <!-- BOOKING -->
-
-    <section
-        class="booking-section"
-        id="termini"
+    <input
+        type="checkbox"
+        id="menuToggle"
+        class="menu-toggle"
+        aria-hidden="true"
     >
 
-        <div class="section-heading">
+    <div class="mobile-menu">
 
-            <div>
+        <div class="mobile-menu-header">
 
-                <div class="eyebrow">
-                    <span>01</span>
-                    REZERVACIJA
-                </div>
-
-                <h2>
-                    Tvoj termin.
-                    <br>
-                    <em>Tvoja igra.</em>
-                </h2>
-
-            </div>
-
-            <p>
-                Odaberi dan, pronađi slobodan termin
-                i rezerviši teren za svoju ekipu.
-            </p>
-
-        </div>
-
-
-        <div class="days-shell">
-
-            <button
-                type="button"
-                class="days-arrow prev-day"
-                aria-label="Prethodni dan"
-            >
-                ←
-            </button>
-
-            <div
-                class="days"
-                aria-label="Dostupni dani"
-            ></div>
-
-            <button
-                type="button"
-                class="days-arrow next-day"
-                aria-label="Sljedeći dan"
-            >
-                →
-            </button>
-
-        </div>
-
-
-        <div class="booking-info">
-
-            <div class="legend-item">
-                <span class="legend free"></span>
-                <span>Slobodno</span>
-            </div>
-
-            <div class="legend-item">
-                <span class="legend busy"></span>
-                <span>Zauzeto</span>
-            </div>
-
-            <div class="selected-date">
-                <span id="selectedDateLabel"></span>
-            </div>
-
-        </div>
-
-
-        <div
-            class="schedule"
-            aria-live="polite"
-        ></div>
-
-    </section>
-
-
-    <!-- FIELD -->
-
-    <section
-        class="field-section"
-        id="teren"
-    >
-
-        <div class="field-image">
-
-            <img
-                src="images/teren2.jpeg"
-                alt="Kockica Football teren"
-                loading="lazy"
-            >
-
-            <div class="field-image-overlay"></div>
-
-            <div class="field-number">
-                02
-            </div>
-
-            <div class="field-image-label">
-                <span></span>
-                KOCKICA FOOTBALL
-            </div>
-
-        </div>
-
-
-        <div class="field-content">
-
-            <div class="eyebrow">
-                <span>02</span>
-                TEREN
-            </div>
-
-            <h2>
-                Napravljeno
-                <em>za igru.</em>
-            </h2>
-
-            <p>
-                Kvalitetan teren, dobra atmosfera i prostor
-                napravljen za ozbiljnu utakmicu — ali i dobro
-                druženje nakon nje.
-            </p>
-
-
-            <div class="field-features">
-
-                <div class="feature">
-
-                    <strong>01</strong>
-
-                    <div>
-                        <b>VJEŠTAČKA TRAVA</b>
-                        <span>Spremna za igru</span>
-                    </div>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>02</strong>
-
-                    <div>
-                        <b>RASVJETA</b>
-                        <span>Igra i nakon zalaska sunca</span>
-                    </div>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>03</strong>
-
-                    <div>
-                        <b>ATMOSFERA</b>
-                        <span>Idealno mjesto za ekipu</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <a
-                href="#termini"
-                class="text-link"
-            >
-                <span>Rezerviši teren</span>
-                <b>→</b>
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- GALLERY -->
-
-    <section
-        class="gallery-section"
-        id="galerija"
-    >
-
-        <div class="section-heading gallery-heading">
-
-            <div>
-
-                <div class="eyebrow">
-                    <span>03</span>
-                    GALERIJA
-                </div>
-
-                <h2>
-                    Vidimo se
-                    <br>
-                    <em>na terenu.</em>
-                </h2>
-
-            </div>
-
-            <p>
-                Pogledaj atmosferu Kockice prije nego
-                što izađeš na teren.
-            </p>
-
-        </div>
-
-
-        <div class="gallery">
-
-            <div class="gallery-main">
-
-                <img
-                    src="images/teren4.jpeg"
-                    alt="Kockica Football teren"
-                    loading="lazy"
-                >
-
-                <div class="gallery-overlay"></div>
-
-                <span>01 / 02</span>
-
-            </div>
-
-
-            <div class="gallery-side">
-
-                <img
-                    src="images/teren5.jpeg"
-                    alt="Kockica Football teren"
-                    loading="lazy"
-                >
-
-                <div class="gallery-overlay"></div>
-
-                <span>02 / 02</span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FINAL CTA -->
-
-    <section class="final-cta">
-
-        <div class="cta-image">
-
-            <img
-                src="images/teren3.jpeg"
-                alt="Kockica Football"
-                loading="lazy"
-            >
-
-        </div>
-
-        <div class="cta-overlay"></div>
-
-        <div class="cta-content">
-
-            <div class="eyebrow">
-                <span>04</span>
-                KOCKICA FOOTBALL
-            </div>
-
-            <h2>
-                Spreman za
-                <em>utakmicu?</em>
-            </h2>
-
-            <a
-                href="#termini"
-                class="button button-yellow"
-            >
-                <span>Rezerviši termin</span>
-                <b>↗</b>
-            </a>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <div class="footer-top">
-
-        <div class="footer-brand">
-
-            <a
-                href="#"
-                aria-label="Kockica Football početna"
-            >
+            <a href="#" class="mobile-logo">
                 <img
                     src="images/logo.png"
                     alt="Kockica Football"
                 >
             </a>
 
-            <p>
-                Tvoj teren.
-                <br>
-                Tvoja ekipa.
-            </p>
+            <label
+                for="menuToggle"
+                class="mobile-close"
+                aria-label="Zatvori meni"
+            >
+                <span></span>
+                <span></span>
+            </label>
 
         </div>
 
+        <nav class="mobile-navigation">
 
-        <div class="footer-links">
+            <a href="#termini">
+                <span>01</span>
+                <strong>Rezervacija</strong>
+            </a>
 
-            <div>
+            <a href="#teren">
+                <span>02</span>
+                <strong>Teren</strong>
+            </a>
+
+            <a href="#galerija">
+                <span>03</span>
+                <strong>Galerija</strong>
+            </a>
+
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <span>MOŠEVAC</span>
+            <span>KOCKICA FOOTBALL</span>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <a
+            href="#"
+            class="brand"
+            aria-label="Kockica Football"
+        >
+            <img
+                src="images/logo.png"
+                alt="Kockica Football"
+            >
+        </a>
+
+        <nav class="desktop-navigation">
+
+            <a href="#termini">
+                <span>01</span>
+                Termini
+            </a>
+
+            <a href="#teren">
+                <span>02</span>
+                Teren
+            </a>
+
+            <a href="#galerija">
+                <span>03</span>
+                Galerija
+            </a>
+
+        </nav>
+
+        <div class="navbar-actions">
+
+            <a
+                href="#termini"
+                class="nav-book"
+            >
+                <span>Rezerviši</span>
+                <b>↗</b>
+            </a>
+
+            <label
+                for="menuToggle"
+                class="menu-button"
+                aria-label="Otvori meni"
+            >
+                <span></span>
+                <span></span>
+            </label>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-background">
+
+                <img
+                    src="images/teren1.jpeg"
+                    alt="Kockica Football teren"
+                    fetchpriority="high"
+                >
+
+            </div>
+
+            <div class="hero-shade"></div>
+
+            <div class="hero-content">
+
+                <div class="hero-topline">
+
+                    <span class="status">
+                        <i></i>
+                        TEREN JE OTVOREN
+                    </span>
+
+                    <span class="location">
+                        MOŠEVAC / BIH
+                    </span>
+
+                </div>
+
+
+                <div class="hero-main">
+
+                    <div class="hero-index">
+                        01
+                    </div>
+
+                    <div class="hero-copy">
+
+                        <p class="hero-label">
+                            KOCKICA FOOTBALL
+                        </p>
+
+                        <h1>
+                            Izađi.
+                            <span>Igraj.</span>
+                        </h1>
+
+                        <p class="hero-text">
+                            Tvoj teren. Tvoja ekipa.
+                            Tvoj termin.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <a
+                                href="#termini"
+                                class="button button-primary"
+                            >
+                                <span>Rezerviši termin</span>
+                                <b>↗</b>
+                            </a>
+
+                            <a
+                                href="#teren"
+                                class="button button-outline"
+                            >
+                                <span>O terenu</span>
+                                <b>↓</b>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-bottom">
+
+                    <div class="hero-fact">
+                        <strong>5 × 5</strong>
+                        <span>FORMAT IGRE</span>
+                    </div>
+
+                    <div class="hero-fact">
+                        <strong>01</strong>
+                        <span>TEREN</span>
+                    </div>
+
+                    <div class="hero-fact">
+                        <strong>24/7</strong>
+                        <span>ONLINE REZERVACIJA</span>
+                    </div>
+
+                    <div class="hero-scroll">
+                        <span>SCROLL</span>
+                        <i></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BOOKING
+        ================================================== -->
+
+        <section
+            class="booking-section"
+            id="termini"
+        >
+
+            <div class="section-intro">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        REZERVACIJA
+                    </span>
+
+                    <h2>
+                        Izaberi dan.
+                        <em>Uzmi termin.</em>
+                    </h2>
+
+                </div>
+
+                <p>
+                    Pronađi slobodan termin i rezerviši
+                    teren za svoju ekipu.
+                </p>
+
+            </div>
+
+
+            <div class="booking-box">
+
+                <div class="booking-header">
+
+                    <div>
+                        <span class="booking-label">
+                            ODABERI DAN
+                        </span>
+
+                        <strong id="selectedDateLabel">
+                            Dostupni termini
+                        </strong>
+                    </div>
+
+                    <div class="booking-arrows">
+
+                        <button
+                            type="button"
+                            class="days-arrow prev-day"
+                            aria-label="Prethodni dan"
+                        >
+                            ←
+                        </button>
+
+                        <button
+                            type="button"
+                            class="days-arrow next-day"
+                            aria-label="Sljedeći dan"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="days"
+                    aria-label="Dostupni dani"
+                ></div>
+
+
+                <div class="schedule-head">
+
+                    <span>TERMIN</span>
+
+                    <div class="availability-legend">
+
+                        <span>
+                            <i class="legend-dot free"></i>
+                            Slobodno
+                        </span>
+
+                        <span>
+                            <i class="legend-dot busy"></i>
+                            Zauzeto
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="schedule"
+                    aria-live="polite"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FIELD
+        ================================================== -->
+
+        <section
+            class="field-section"
+            id="teren"
+        >
+
+            <div class="field-visual">
+
+                <img
+                    src="images/teren2.jpeg"
+                    alt="Kockica Football teren"
+                    loading="lazy"
+                >
+
+                <div class="field-overlay"></div>
+
+                <div class="field-caption">
+                    <span>02</span>
+                    KOCKICA / MOŠEVAC
+                </div>
+
+            </div>
+
+
+            <div class="field-info">
+
+                <div class="section-label">
+                    02 / TEREN
+                </div>
+
+                <h2>
+                    Napravljen
+                    <em>za utakmicu.</em>
+                </h2>
+
+                <p class="field-description">
+                    Kvalitetan teren, dobra rasvjeta i prostor
+                    napravljen da svaka ekipa može doći,
+                    izaći na teren i jednostavno — igrati.
+                </p>
+
+
+                <div class="field-list">
+
+                    <div class="field-item">
+
+                        <span>01</span>
+
+                        <div>
+                            <strong>VJEŠTAČKA TRAVA</strong>
+                            <p>
+                                Površina spremna za ozbiljnu igru.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field-item">
+
+                        <span>02</span>
+
+                        <div>
+                            <strong>RASVJETA</strong>
+                            <p>
+                                Termin i nakon zalaska sunca.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field-item">
+
+                        <span>03</span>
+
+                        <div>
+                            <strong>ATMOSFERA</strong>
+                            <p>
+                                Mjesto gdje se ekipa okuplja.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="#termini"
+                    class="inline-link"
+                >
+                    <span>Rezerviši teren</span>
+                    <b>→</b>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             GALLERY
+        ================================================== -->
+
+        <section
+            class="gallery-section"
+            id="galerija"
+        >
+
+            <div class="section-intro gallery-intro">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        GALERIJA
+                    </span>
+
+                    <h2>
+                        Vidi mjesto.
+                        <em>Dođi igrati.</em>
+                    </h2>
+
+                </div>
+
+                <p>
+                    Pogledaj Kockicu prije nego što
+                    izađeš na teren.
+                </p>
+
+            </div>
+
+
+            <div class="gallery-grid">
+
+                <figure class="gallery-large">
+
+                    <img
+                        src="images/teren4.jpeg"
+                        alt="Kockica Football"
+                        loading="lazy"
+                    >
+
+                    <figcaption>
+                        <span>01</span>
+                        KOCKICA FOOTBALL
+                    </figcaption>
+
+                </figure>
+
+
+                <figure class="gallery-small">
+
+                    <img
+                        src="images/teren5.jpeg"
+                        alt="Kockica Football teren"
+                        loading="lazy"
+                    >
+
+                    <figcaption>
+                        <span>02</span>
+                        GAME ON
+                    </figcaption>
+
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CTA
+        ================================================== -->
+
+        <section class="final-cta">
+
+            <div class="cta-image">
+
+                <img
+                    src="images/teren3.jpeg"
+                    alt="Kockica Football"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="cta-content">
+
+                <span class="section-label">
+                    KOCKICA FOOTBALL / 04
+                </span>
+
+                <h2>
+                    Sljedeća
+                    <em>utakmica?</em>
+                </h2>
+
+                <p>
+                    Ne traži termin. Uzmi ga.
+                </p>
+
+                <a
+                    href="#termini"
+                    class="button button-dark"
+                >
+                    <span>Rezerviši termin</span>
+                    <b>↗</b>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="#">
+                    <img
+                        src="images/logo.png"
+                        alt="Kockica Football"
+                    >
+                </a>
+
+                <p>
+                    Tvoj teren.<br>
+                    Tvoja ekipa.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
 
                 <span>NAVIGACIJA</span>
 
@@ -560,7 +633,7 @@
             </div>
 
 
-            <div>
+            <div class="footer-column">
 
                 <span>KONTAKT</span>
 
@@ -576,128 +649,129 @@
 
         </div>
 
-    </div>
 
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 Kockica Football
-        </span>
-
-        <div class="footer-bottom-right">
-
-            <a
-                href="admin.html"
-                class="admin-link"
-            >
-                ADMIN
-            </a>
+        <div class="footer-bottom">
 
             <span>
-                IZAĐI. IGRAJ.
+                © 2026 Kockica Football
             </span>
 
+            <div>
+
+                <a
+                    href="admin.html"
+                    class="admin-link"
+                >
+                    ADMIN
+                </a>
+
+                <span>
+                    IZAĐI. IGRAJ.
+                </span>
+
+            </div>
+
         </div>
 
-    </div>
-
-</footer>
+    </footer>
 
 
-<!-- BOOKING MODAL -->
-
-<div
-    class="modal"
-    id="bookingModal"
-    aria-hidden="true"
->
-
-    <div class="modal-backdrop"></div>
+    <!-- =====================================================
+         BOOKING MODAL
+    ====================================================== -->
 
     <div
-        class="modal-card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalTitle"
+        class="modal"
+        id="bookingModal"
+        aria-hidden="true"
     >
 
-        <button
-            type="button"
-            class="modal-close"
-            aria-label="Zatvori prozor"
-        >
-            ×
-        </button>
-
-
-        <div class="modal-kicker">
-            <span></span>
-            REZERVACIJA
-        </div>
-
-
-        <h3 id="modalTitle">
-            Rezerviši
-            <strong id="modalTime"></strong>
-        </h3>
-
-        <p
-            class="modal-date"
-            id="modalDate"
-        ></p>
-
-
-        <form id="bookingForm">
-
-            <label for="customerName">
-                Ime i prezime
-
-                <input
-                    type="text"
-                    id="customerName"
-                    name="customerName"
-                    placeholder="Unesite ime i prezime"
-                    autocomplete="name"
-                    required
-                >
-            </label>
-
-
-            <label for="customerPhone">
-                Broj telefona
-
-                <input
-                    type="tel"
-                    id="customerPhone"
-                    name="customerPhone"
-                    placeholder="06X XXX XXX"
-                    autocomplete="tel"
-                    required
-                >
-            </label>
-
-
-            <button
-                type="submit"
-                class="button button-yellow full-button"
-            >
-                <span>Potvrdi rezervaciju</span>
-                <b>↗</b>
-            </button>
-
-        </form>
-
+        <div class="modal-backdrop"></div>
 
         <div
-            class="form-message"
-            id="formMessage"
-            aria-live="polite"
-        ></div>
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close"
+                aria-label="Zatvori"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-heading">
+
+                <span>REZERVACIJA</span>
+
+                <h3 id="modalTitle">
+                    Rezerviši
+                    <strong id="modalTime"></strong>
+                </h3>
+
+                <p id="modalDate"></p>
+
+            </div>
+
+
+            <form id="bookingForm">
+
+                <label for="customerName">
+                    Ime i prezime
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        name="customerName"
+                        placeholder="Unesite ime i prezime"
+                        autocomplete="name"
+                        required
+                    >
+                </label>
+
+
+                <label for="customerPhone">
+                    Broj telefona
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        name="customerPhone"
+                        placeholder="06X XXX XXX"
+                        autocomplete="tel"
+                        required
+                    >
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="button button-primary modal-submit"
+                >
+                    <span>Potvrdi rezervaciju</span>
+                    <b>↗</b>
+                </button>
+
+            </form>
+
+
+            <div
+                class="form-message"
+                id="formMessage"
+                aria-live="polite"
+            ></div>
+
+        </div>
 
     </div>
 
-</div>
 
+    <script type="module" src="script.js"></script>
 
-<script type="module" src="script.js"></script>
+</body>
+</html>
+```

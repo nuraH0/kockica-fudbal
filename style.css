@@ -1922,30 +1922,3 @@ footer {
     }
 }
 
-.navbar {
-    height: 76px;
-    padding-top: 0;
-    padding-bottom: 0;
-
-    transition:
-        height .4s cubic-bezier(.22, 1, .36, 1),
-        background .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
-}
-
-.navbar.navbar-compact {
-    height: 52px;
-}
-
-.navbar.navbar-compact .brand img {
-    width: 105px;
-}
-
-.navbar.navbar-compact .menu-button {
-    transform: scale(.9);
-}
-
-.navbar.navbar-compact .nav-book {
-    transform: scale(.92);
-}

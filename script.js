@@ -826,125 +826,121 @@ document.addEventListener("DOMContentLoaded", () => {
         ========================================= */
 
         function napraviDane() {
+    if (!daysContainer) {
+        return;
+    }
 
-            if (!daysContainer) {
-                return;
-            }
+    daysContainer.innerHTML = "";
 
+    const danas = new Date();
 
-            daysContainer.innerHTML =
-                "";
+    // Početni datum = uvijek danas
+    danas.setHours(0, 0, 0, 0);
 
+    // Prikazujemo narednih 31 dan
+    for (let i = 0; i < 31; i++) {
 
-            const danas =
-                new Date();
+        const date = new Date(danas);
 
+        date.setDate(danas.getDate() + i);
 
-            for (
-                let i = 0;
-                i < 7;
-                i++
-            ) {
+        const button = document.createElement("button");
 
-                const date =
-                    new Date(danas);
+        button.type = "button";
+        button.className = "day";
 
+        button.dataset.date =
+            formatFirebaseDate(date);
 
-                date.setDate(
-                    danas.getDate() + i
-                );
+        // Danas je automatski aktivan
+        if (i === 0) {
 
+            button.classList.add("active");
 
-                const button =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                button.className =
-                    "day";
-
-
-                button.dataset.date =
-                    formatFirebaseDate(
-                        date
-                    );
-
-
-                if (i === 0) {
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    odabraniDatum =
-                        button.dataset.date;
-
-                }
-
-
-                button.innerHTML = `
-
-                    <span>
-                        ${danNedelje(date)}
-                    </span>
-
-
-                    <strong>
-                        ${String(
-                            date.getDate()
-                        ).padStart(2, "0")}
-                    </strong>
-
-
-                    <small>
-                        ${mjesecNaziv(date)}
-                    </small>
-
-                `;
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        document
-                            .querySelectorAll(
-                                ".day"
-                            )
-                            .forEach(day => {
-
-                                day.classList.remove(
-                                    "active"
-                                );
-
-                            });
-
-
-                        button.classList.add(
-                            "active"
-                        );
-
-
-                        odabraniDatum =
-                            button.dataset.date;
-
-
-                        prikaziRaspored();
-
-                    }
-                );
-
-
-                daysContainer.appendChild(
-                    button
-                );
-
-            }
-
+            odabraniDatum =
+                button.dataset.date;
         }
 
+        button.innerHTML = `
+            <span>
+                ${danNedelje(date)}
+            </span>
+
+            <strong>
+                ${String(
+                    date.getDate()
+                ).padStart(2, "0")}
+            </strong>
+
+            <small>
+                ${mjesecNaziv(date)}
+            </small>
+        `;
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".day")
+                .forEach(day => {
+                    day.classList.remove("active");
+                });
+
+            button.classList.add("active");
+
+            odabraniDatum =
+                button.dataset.date;
+
+            prikaziRaspored();
+
+            // Kliknuti datum lagano dovodi u centar
+            button.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center"
+            });
+        });
+
+        daysContainer.appendChild(button);
+    }
+
+    // Automatski pozicioniraj kalendar na danas
+    const danasnjiDan =
+        daysContainer.querySelector(".day.active");
+
+    if (danasnjiDan) {
+        danasnjiDan.scrollIntoView({
+            behavior: "auto",
+            block: "nearest",
+            inline: "center"
+        });
+    }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const targetId = link.getAttribute("href");
+
+        if (!targetId || targetId === "#") {
+            return;
+        }
+
+        const target = document.querySelector(targetId);
+
+        if (!target) {
+            return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        // zatvori mobilni meni ako je otvoren
+        document.body.classList.remove("menu-open");
+    });
+});
 
         /* =========================================
            DA LI JE INTERVAL ZAUZET

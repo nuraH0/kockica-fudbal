@@ -776,6 +776,18 @@ button {
 
 }
 
+input[type="date"],
+input[type="time"] {
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 1;
+    filter: invert(1);
+}
+
 /* =========================================
    ADMIN TERMIN - DODATNO
 ========================================= */

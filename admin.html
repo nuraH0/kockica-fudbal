@@ -21,23 +21,481 @@
         }
     </script>
 
+    <style>
+
+        /* =====================================================
+           CUSTOM PICKER
+        ===================================================== */
+
+        .picker-input {
+            position: relative;
+        }
+
+        .picker-field {
+            width: 100%;
+            min-height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 18px;
+
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 12px;
+
+            background: #111;
+            color: #fff;
+
+            font: inherit;
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                transform .2s ease;
+        }
+
+        .picker-field:hover {
+            border-color: rgba(255,210,0,.55);
+        }
+
+        .picker-field:active {
+            transform: scale(.99);
+        }
+
+        .picker-field .picker-value {
+            color: #fff;
+        }
+
+        .picker-field .picker-icon {
+            color: #ffd400;
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           OVERLAY
+        ===================================================== */
+
+        .picker-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0,0,0,.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .picker-overlay.active {
+            display: flex;
+        }
+
+
+        /* =====================================================
+           PICKER BOX
+        ===================================================== */
+
+        .picker-modal {
+            width: min(430px, 100%);
+
+            max-height: min(720px, 92vh);
+            overflow: hidden;
+
+            background: #0c0c0c;
+
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 24px;
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.65),
+                0 0 0 1px rgba(255,210,0,.03);
+
+            animation: pickerIn .22s ease;
+        }
+
+        @keyframes pickerIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           PICKER HEADER
+        ===================================================== */
+
+        .picker-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 20px 20px 16px;
+
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .picker-title {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .picker-title small {
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        .picker-title strong {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .picker-close {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: #181818;
+            color: #fff;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .picker-close:hover {
+            background: #222;
+        }
+
+
+        /* =====================================================
+           DATE PICKER
+        ===================================================== */
+
+        .calendar {
+            padding: 18px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+        .calendar-month {
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .calendar-nav button {
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 10px;
+
+            background: #151515;
+            color: #fff;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        .calendar-nav button:hover {
+            border-color: #ffd400;
+            color: #ffd400;
+        }
+
+        .calendar-week {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 5px;
+
+            margin-bottom: 8px;
+        }
+
+        .calendar-week span {
+            text-align: center;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 5px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: transparent;
+            color: #ddd;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background .15s ease,
+                color .15s ease,
+                transform .15s ease;
+        }
+
+        .calendar-day:hover {
+            background: #1c1c1c;
+            color: #ffd400;
+        }
+
+        .calendar-day.other-month {
+            color: #444;
+        }
+
+        .calendar-day.today {
+            border: 1px solid rgba(255,212,0,.4);
+        }
+
+        .calendar-day.selected {
+            background: #ffd400;
+            color: #050505;
+            font-weight: 900;
+        }
+
+        .calendar-day.selected:hover {
+            background: #ffd400;
+            color: #050505;
+        }
+
+
+        /* =====================================================
+           TIME PICKER
+        ===================================================== */
+
+        .time-picker {
+            padding: 20px;
+        }
+
+        .time-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            margin: 8px 0 24px;
+
+            font-size: 54px;
+            line-height: 1;
+
+            font-weight: 800;
+            letter-spacing: -.04em;
+        }
+
+        .time-display span {
+            color: #fff;
+        }
+
+        .time-display .time-active {
+            color: #ffd400;
+        }
+
+        .time-separator {
+            color: #555 !important;
+        }
+
+        .time-section-title {
+            margin-bottom: 10px;
+
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+
+            color: #666;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 8px;
+
+            max-height: 260px;
+            overflow-y: auto;
+
+            padding-right: 3px;
+        }
+
+        .time-option {
+            min-height: 48px;
+
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px;
+
+            background: #151515;
+            color: #ddd;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .15s ease;
+        }
+
+        .time-option:hover {
+            border-color: rgba(255,212,0,.5);
+            color: #ffd400;
+        }
+
+        .time-option.selected {
+            background: #ffd400;
+            border-color: #ffd400;
+            color: #050505;
+        }
+
+
+        /* =====================================================
+           PICKER FOOTER
+        ===================================================== */
+
+        .picker-footer {
+            display: flex;
+            gap: 10px;
+
+            padding: 16px 20px 20px;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+
+        .picker-footer button {
+            flex: 1;
+
+            min-height: 48px;
+
+            border: 0;
+            border-radius: 11px;
+
+            font: inherit;
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .picker-cancel {
+            background: #181818;
+            color: #aaa;
+        }
+
+        .picker-confirm {
+            background: #ffd400;
+            color: #050505;
+        }
+
+        .picker-confirm:hover {
+            background: #ffe047;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .picker-overlay {
+                align-items: flex-end;
+                padding: 0;
+            }
+
+            .picker-modal {
+                width: 100%;
+                max-height: 90vh;
+
+                border-radius: 24px 24px 0 0;
+            }
+
+            .time-display {
+                font-size: 48px;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
     <header class="admin-navbar">
 
         <a href="index.html" class="admin-logo">
+
             <img
                 src="images/logo.png"
                 alt="Kockica"
             >
+
         </a>
 
 
-        <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="display:flex;align-items:center;gap:15px;">
 
             <a
                 href="index.html"
@@ -45,6 +503,7 @@
             >
                 ← JAVNA STRANICA
             </a>
+
 
             <button
                 type="button"
@@ -59,10 +518,13 @@
     </header>
 
 
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
     <main class="admin-main">
 
-
-        <!-- NASLOV -->
 
         <section class="admin-intro">
 
@@ -83,16 +545,24 @@
         </section>
 
 
-        <!-- DODAVANJE -->
+
+        <!-- =====================================================
+             ADMIN GRID
+        ===================================================== -->
 
         <section class="admin-grid">
 
+
+            <!-- =================================================
+                 FORMA
+            ================================================= -->
 
             <div class="admin-card form-card">
 
                 <div class="card-top">
 
                     <div>
+
                         <span class="card-number">
                             01
                         </span>
@@ -100,7 +570,9 @@
                         <h2>
                             Dodaj termin
                         </h2>
+
                     </div>
+
 
                     <span class="card-label">
                         NOVI TERMIN
@@ -109,71 +581,153 @@
                 </div>
 
 
+
                 <form id="termin-form">
 
 
+                    <!-- DATUM -->
+
                     <div class="input-group">
 
-                        <label for="datum">
+                        <label>
                             DATUM
                         </label>
 
-                        <input
-                            type="text"
-                            id="datum"
-                            placeholder="01.10.2026."
-                            inputmode="numeric"
-                            maxlength="10"
-                            autocomplete="off"
-                            required
-                        >
+
+                        <div class="picker-input">
+
+                            <button
+                                type="button"
+                                class="picker-field"
+                                id="datum-picker"
+                            >
+
+                                <span
+                                    class="picker-value"
+                                    id="datum-display"
+                                >
+                                    Odaberi datum
+                                </span>
+
+                                <span class="picker-icon">
+                                    ▣
+                                </span>
+
+                            </button>
+
+
+                            <!--
+                                OVO JE STVARNA VRIJEDNOST
+                                KOJU KORISTI TVOJ script.js
+                            -->
+
+                            <input
+                                type="hidden"
+                                id="datum"
+                                required
+                            >
+
+                        </div>
 
                     </div>
 
+
+
+                    <!-- VRIJEME -->
 
                     <div class="time-row">
 
 
+                        <!-- OD -->
+
                         <div class="input-group">
 
-                            <label for="vrijeme-od">
+                            <label>
                                 OD
                             </label>
 
-                            <input
-                                type="text"
-                                id="vrijeme-od"
-                                placeholder="18:30"
-                                inputmode="numeric"
-                                maxlength="5"
-                                autocomplete="off"
-                                required
-                            >
+
+                            <div class="picker-input">
+
+                                <button
+                                    type="button"
+                                    class="picker-field"
+                                    id="vrijeme-od-picker"
+                                >
+
+                                    <span
+                                        class="picker-value"
+                                        id="vrijeme-od-display"
+                                    >
+                                        Odaberi vrijeme
+                                    </span>
+
+                                    <span class="picker-icon">
+                                        ◷
+                                    </span>
+
+                                </button>
+
+
+                                <input
+                                    type="hidden"
+                                    id="vrijeme-od"
+                                    required
+                                >
+
+                            </div>
 
                         </div>
 
 
+
+                        <!-- DO -->
+
                         <div class="input-group">
 
-                            <label for="vrijeme-do">
+                            <label>
                                 DO
                             </label>
 
-                            <input
-                                type="text"
-                                id="vrijeme-do"
-                                placeholder="19:45"
-                                inputmode="numeric"
-                                maxlength="5"
-                                autocomplete="off"
-                                required
-                            >
+
+                            <div class="picker-input">
+
+                                <button
+                                    type="button"
+                                    class="picker-field"
+                                    id="vrijeme-do-picker"
+                                >
+
+                                    <span
+                                        class="picker-value"
+                                        id="vrijeme-do-display"
+                                    >
+                                        Odaberi vrijeme
+                                    </span>
+
+                                    <span class="picker-icon">
+                                        ◷
+                                    </span>
+
+                                </button>
+
+
+                                <input
+                                    type="hidden"
+                                    id="vrijeme-do"
+                                    required
+                                >
+
+                            </div>
 
                         </div>
 
 
                     </div>
 
+
+
+                    <!-- SUBMIT -->
 
                     <button
                         type="submit"
@@ -205,7 +759,10 @@
             </div>
 
 
-            <!-- INFORMACIJE -->
+
+            <!-- =================================================
+                 INFORMACIJE
+            ================================================= -->
 
             <div class="admin-card info-card-admin">
 
@@ -226,20 +783,24 @@
                 <div class="status-explanation">
 
                     <div>
+
                         <i class="green-dot"></i>
 
                         <span>
                             Slobodan termin
                         </span>
+
                     </div>
 
 
                     <div>
+
                         <i class="red-dot"></i>
 
                         <span>
                             Zauzet termin
                         </span>
+
                     </div>
 
                 </div>
@@ -250,9 +811,13 @@
         </section>
 
 
-        <!-- POSTOJEĆI TERMINI -->
+
+        <!-- =====================================================
+             POSTOJEĆI TERMINI
+        ===================================================== -->
 
         <section class="existing-section">
+
 
             <div class="existing-header">
 
@@ -268,11 +833,13 @@
 
                 </div>
 
+
                 <span class="existing-count">
                     TERMINI
                 </span>
 
             </div>
+
 
 
             <div
@@ -282,7 +849,9 @@
 
                 <div class="empty-message">
 
-                    <span>—</span>
+                    <span>
+                        —
+                    </span>
 
                     <p>
                         Nema unesenih termina.
@@ -298,6 +867,11 @@
     </main>
 
 
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
     <footer class="admin-footer">
 
         <span>
@@ -311,7 +885,242 @@
     </footer>
 
 
+
+    <!-- =====================================================
+         DATE PICKER MODAL
+    ===================================================== -->
+
+    <div
+        class="picker-overlay"
+        id="date-overlay"
+    >
+
+        <div
+            class="picker-modal"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <div class="picker-header">
+
+                <div class="picker-title">
+
+                    <small>
+                        KOCKICA / DATUM
+                    </small>
+
+                    <strong>
+                        Odaberi datum
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="picker-close"
+                    data-close-picker
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <div class="calendar">
+
+                <div class="calendar-nav">
+
+                    <button
+                        type="button"
+                        id="prev-month"
+                    >
+                        ‹
+                    </button>
+
+
+                    <span
+                        class="calendar-month"
+                        id="calendar-month"
+                    >
+                    </span>
+
+
+                    <button
+                        type="button"
+                        id="next-month"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+
+                <div class="calendar-week">
+
+                    <span>PON</span>
+                    <span>UTO</span>
+                    <span>SRI</span>
+                    <span>ČET</span>
+                    <span>PET</span>
+                    <span>SUB</span>
+                    <span>NED</span>
+
+                </div>
+
+
+                <div
+                    class="calendar-days"
+                    id="calendar-days"
+                >
+                </div>
+
+            </div>
+
+
+
+            <div class="picker-footer">
+
+                <button
+                    type="button"
+                    class="picker-cancel"
+                    data-close-picker
+                >
+                    ODUSTANI
+                </button>
+
+                <button
+                    type="button"
+                    class="picker-confirm"
+                    id="confirm-date"
+                >
+                    ODABERI
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TIME PICKER MODAL
+    ===================================================== -->
+
+    <div
+        class="picker-overlay"
+        id="time-overlay"
+    >
+
+        <div
+            class="picker-modal"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <div class="picker-header">
+
+                <div class="picker-title">
+
+                    <small>
+                        KOCKICA / VRIJEME
+                    </small>
+
+                    <strong>
+                        Odaberi vrijeme
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="picker-close"
+                    data-close-picker
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <div class="time-picker">
+
+                <div class="time-display">
+
+                    <span
+                        id="selected-hour"
+                        class="time-active"
+                    >
+                        07
+                    </span>
+
+                    <span class="time-separator">
+                        :
+                    </span>
+
+                    <span id="selected-minute">
+                        00
+                    </span>
+
+                </div>
+
+
+                <div class="time-section-title">
+                    Odaberi vrijeme
+                </div>
+
+
+                <div
+                    class="time-grid"
+                    id="time-grid"
+                >
+                </div>
+
+            </div>
+
+
+
+            <div class="picker-footer">
+
+                <button
+                    type="button"
+                    class="picker-cancel"
+                    data-close-picker
+                >
+                    ODUSTANI
+                </button>
+
+                <button
+                    type="button"
+                    class="picker-confirm"
+                    id="confirm-time"
+                >
+                    ODABERI
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CUSTOM PICKER JAVASCRIPT
+    ===================================================== -->
+
     <script>
+
+        /* =====================================================
+           ODJAVA
+        ===================================================== */
 
         function odjaviAdmina() {
 
@@ -321,8 +1130,852 @@
 
         }
 
+
+
+        /* =====================================================
+           ELEMENTI
+        ===================================================== */
+
+        const datumPicker =
+            document.getElementById("datum-picker");
+
+        const datumInput =
+            document.getElementById("datum");
+
+        const datumDisplay =
+            document.getElementById("datum-display");
+
+
+        const vrijemeOdPicker =
+            document.getElementById("vrijeme-od-picker");
+
+        const vrijemeOdInput =
+            document.getElementById("vrijeme-od");
+
+        const vrijemeOdDisplay =
+            document.getElementById("vrijeme-od-display");
+
+
+        const vrijemeDoPicker =
+            document.getElementById("vrijeme-do-picker");
+
+        const vrijemeDoInput =
+            document.getElementById("vrijeme-do");
+
+        const vrijemeDoDisplay =
+            document.getElementById("vrijeme-do-display");
+
+
+
+        /* =====================================================
+           DATE PICKER
+        ===================================================== */
+
+        const dateOverlay =
+            document.getElementById("date-overlay");
+
+        const calendarDays =
+            document.getElementById("calendar-days");
+
+        const calendarMonth =
+            document.getElementById("calendar-month");
+
+        const prevMonth =
+            document.getElementById("prev-month");
+
+        const nextMonth =
+            document.getElementById("next-month");
+
+        const confirmDate =
+            document.getElementById("confirm-date");
+
+
+        const danas = new Date();
+
+        danas.setHours(0, 0, 0, 0);
+
+
+        let calendarDate = new Date(danas);
+
+        let selectedDate = null;
+
+        let temporaryDate = null;
+
+
+
+        const mjeseci = [
+            "Januar",
+            "Februar",
+            "Mart",
+            "April",
+            "Maj",
+            "Juni",
+            "Juli",
+            "August",
+            "Septembar",
+            "Oktobar",
+            "Novembar",
+            "Decembar"
+        ];
+
+
+
+        function formatDateDisplay(date) {
+
+            const day =
+                String(date.getDate()).padStart(2, "0");
+
+            const month =
+                String(date.getMonth() + 1).padStart(2, "0");
+
+            const year =
+                date.getFullYear();
+
+            return `${day}/${month}/${year}`;
+
+        }
+
+
+
+        /*
+         * Vrijednost koju tvoj postojeći script.js može
+         * koristiti.
+         *
+         * Ako tvoj postojeći kod očekuje 04.10.2026,
+         * upravo to mu šaljemo.
+         */
+
+        function formatDateForScript(date) {
+
+            const day =
+                String(date.getDate()).padStart(2, "0");
+
+            const month =
+                String(date.getMonth() + 1).padStart(2, "0");
+
+            const year =
+                date.getFullYear();
+
+            return `${day}.${month}.${year}`;
+
+        }
+
+
+
+        function renderCalendar() {
+
+            calendarDays.innerHTML = "";
+
+
+            const year =
+                calendarDate.getFullYear();
+
+            const month =
+                calendarDate.getMonth();
+
+
+            calendarMonth.textContent =
+                `${mjeseci[month]} ${year}`;
+
+
+            const firstDay =
+                new Date(year, month, 1);
+
+
+            let startDay =
+                firstDay.getDay();
+
+            /*
+             * JavaScript:
+             * Nedjelja = 0
+             *
+             * Nama treba:
+             * Ponedjeljak = 0
+             */
+
+            startDay =
+                startDay === 0
+                    ? 6
+                    : startDay - 1;
+
+
+            const daysInMonth =
+                new Date(
+                    year,
+                    month + 1,
+                    0
+                ).getDate();
+
+
+            const daysInPreviousMonth =
+                new Date(
+                    year,
+                    month,
+                    0
+                ).getDate();
+
+
+
+            /*
+             * Dani prethodnog mjeseca
+             */
+
+            for (
+                let i = startDay - 1;
+                i >= 0;
+                i--
+            ) {
+
+                const button =
+                    document.createElement("button");
+
+                button.type = "button";
+
+                button.className =
+                    "calendar-day other-month";
+
+                button.textContent =
+                    daysInPreviousMonth - i;
+
+                button.disabled = true;
+
+                calendarDays.appendChild(button);
+
+            }
+
+
+
+            /*
+             * Dani trenutnog mjeseca
+             */
+
+            for (
+                let day = 1;
+                day <= daysInMonth;
+                day++
+            ) {
+
+                const button =
+                    document.createElement("button");
+
+                button.type = "button";
+
+                button.className =
+                    "calendar-day";
+
+                button.textContent =
+                    day;
+
+
+                const thisDate =
+                    new Date(
+                        year,
+                        month,
+                        day
+                    );
+
+                thisDate.setHours(0, 0, 0, 0);
+
+
+
+                /*
+                 * Danas
+                 */
+
+                if (
+                    thisDate.getTime() ===
+                    danas.getTime()
+                ) {
+
+                    button.classList.add("today");
+
+                }
+
+
+
+                /*
+                 * Odabrani datum
+                 */
+
+                if (
+                    temporaryDate &&
+                    thisDate.getTime() ===
+                    temporaryDate.getTime()
+                ) {
+
+                    button.classList.add("selected");
+
+                }
+
+
+
+                /*
+                 * Prošli datumi nisu dostupni
+                 */
+
+                if (
+                    thisDate < danas
+                ) {
+
+                    button.disabled = true;
+
+                    button.classList.add("other-month");
+
+                } else {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            temporaryDate =
+                                new Date(thisDate);
+
+                            renderCalendar();
+
+                        }
+                    );
+
+                }
+
+
+                calendarDays.appendChild(button);
+
+            }
+
+
+
+            /*
+             * Popuni zadnji red
+             */
+
+            const totalCells =
+                startDay + daysInMonth;
+
+            const remaining =
+                totalCells % 7 === 0
+                    ? 0
+                    : 7 - (totalCells % 7);
+
+
+            for (
+                let i = 1;
+                i <= remaining;
+                i++
+            ) {
+
+                const button =
+                    document.createElement("button");
+
+                button.type = "button";
+
+                button.className =
+                    "calendar-day other-month";
+
+                button.textContent = i;
+
+                button.disabled = true;
+
+                calendarDays.appendChild(button);
+
+            }
+
+        }
+
+
+
+        datumPicker.addEventListener(
+            "click",
+            () => {
+
+                if (selectedDate) {
+
+                    temporaryDate =
+                        new Date(selectedDate);
+
+                    calendarDate =
+                        new Date(selectedDate);
+
+                } else {
+
+                    temporaryDate =
+                        new Date(danas);
+
+                    calendarDate =
+                        new Date(danas);
+
+                }
+
+
+                renderCalendar();
+
+                dateOverlay.classList.add("active");
+
+            }
+        );
+
+
+
+        prevMonth.addEventListener(
+            "click",
+            () => {
+
+                const novi =
+                    new Date(calendarDate);
+
+                novi.setMonth(
+                    novi.getMonth() - 1
+                );
+
+
+                /*
+                 * Ne dozvoljavamo vraćanje
+                 * prije trenutnog mjeseca.
+                 */
+
+                const currentMonth =
+                    new Date(
+                        danas.getFullYear(),
+                        danas.getMonth(),
+                        1
+                    );
+
+
+                if (novi >= currentMonth) {
+
+                    calendarDate = novi;
+
+                    renderCalendar();
+
+                }
+
+            }
+        );
+
+
+
+        nextMonth.addEventListener(
+            "click",
+            () => {
+
+                calendarDate.setMonth(
+                    calendarDate.getMonth() + 1
+                );
+
+                renderCalendar();
+
+            }
+        );
+
+
+
+        confirmDate.addEventListener(
+            "click",
+            () => {
+
+                if (!temporaryDate) {
+                    return;
+                }
+
+
+                selectedDate =
+                    new Date(temporaryDate);
+
+
+                datumDisplay.textContent =
+                    formatDateDisplay(
+                        selectedDate
+                    );
+
+
+                datumInput.value =
+                    formatDateForScript(
+                        selectedDate
+                    );
+
+
+                dateOverlay.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           TIME PICKER
+        ===================================================== */
+
+        const timeOverlay =
+            document.getElementById("time-overlay");
+
+        const timeGrid =
+            document.getElementById("time-grid");
+
+        const selectedHour =
+            document.getElementById("selected-hour");
+
+        const selectedMinute =
+            document.getElementById("selected-minute");
+
+        const confirmTime =
+            document.getElementById("confirm-time");
+
+
+        let currentTimeInput = null;
+
+        let currentTimeDisplay = null;
+
+        let temporaryTime = "07:00";
+
+
+
+        function napraviVremena() {
+
+            timeGrid.innerHTML = "";
+
+
+            /*
+             * 07:00 do 23:00
+             * svakih 30 minuta
+             */
+
+            for (
+                let hour = 7;
+                hour <= 23;
+                hour++
+            ) {
+
+                for (
+                    let minute = 0;
+                    minute < 60;
+                    minute += 30
+                ) {
+
+                    /*
+                     * 23:30 ne nudimo jer teren
+                     * završava u 23:00.
+                     */
+
+                    if (
+                        hour === 23 &&
+                        minute > 0
+                    ) {
+                        continue;
+                    }
+
+
+                    const vrijeme =
+                        `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+
+
+                    const button =
+                        document.createElement("button");
+
+                    button.type = "button";
+
+                    button.className =
+                        "time-option";
+
+                    button.textContent =
+                        vrijeme;
+
+
+                    if (
+                        vrijeme === temporaryTime
+                    ) {
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+                    }
+
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            temporaryTime =
+                                vrijeme;
+
+
+                            const [
+                                h,
+                                m
+                            ] =
+                                vrijeme.split(":");
+
+
+                            selectedHour.textContent =
+                                h;
+
+                            selectedMinute.textContent =
+                                m;
+
+
+                            document
+                                .querySelectorAll(
+                                    ".time-option"
+                                )
+                                .forEach(
+                                    item => {
+                                        item.classList.remove(
+                                            "selected"
+                                        );
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "selected"
+                            );
+
+                        }
+                    );
+
+
+                    timeGrid.appendChild(button);
+
+                }
+
+            }
+
+        }
+
+
+
+        function otvoriTimePicker(
+            input,
+            display
+        ) {
+
+            currentTimeInput =
+                input;
+
+            currentTimeDisplay =
+                display;
+
+
+            temporaryTime =
+                input.value ||
+                (
+                    input === vrijemeDoInput
+                        ? "07:30"
+                        : "07:00"
+                );
+
+
+            const [
+                hour,
+                minute
+            ] =
+                temporaryTime.split(":");
+
+
+            selectedHour.textContent =
+                hour;
+
+            selectedMinute.textContent =
+                minute;
+
+
+            napraviVremena();
+
+
+            timeOverlay.classList.add(
+                "active"
+            );
+
+        }
+
+
+
+        vrijemeOdPicker.addEventListener(
+            "click",
+            () => {
+
+                otvoriTimePicker(
+                    vrijemeOdInput,
+                    vrijemeOdDisplay
+                );
+
+            }
+        );
+
+
+
+        vrijemeDoPicker.addEventListener(
+            "click",
+            () => {
+
+                otvoriTimePicker(
+                    vrijemeDoInput,
+                    vrijemeDoDisplay
+                );
+
+            }
+        );
+
+
+
+        confirmTime.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    !currentTimeInput ||
+                    !currentTimeDisplay
+                ) {
+                    return;
+                }
+
+
+                currentTimeInput.value =
+                    temporaryTime;
+
+
+                currentTimeDisplay.textContent =
+                    temporaryTime;
+
+
+                timeOverlay.classList.remove(
+                    "active"
+                );
+
+
+                currentTimeInput =
+                    null;
+
+                currentTimeDisplay =
+                    null;
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ZATVARANJE PICKERA
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-close-picker]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            dateOverlay.classList.remove(
+                                "active"
+                            );
+
+                            timeOverlay.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /*
+         * Klik izvan prozora
+         */
+
+        [dateOverlay, timeOverlay]
+            .forEach(
+                overlay => {
+
+                    overlay.addEventListener(
+                        "click",
+                        event => {
+
+                            if (
+                                event.target ===
+                                overlay
+                            ) {
+
+                                overlay.classList.remove(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /*
+         * ESC zatvara picker
+         */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    dateOverlay.classList.remove(
+                        "active"
+                    );
+
+                    timeOverlay.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           POČETNI DATUM
+        ===================================================== */
+
+        /*
+         * Odmah postavljamo današnji datum.
+         * Korisnik ga može promijeniti.
+         */
+
+        selectedDate =
+            new Date(danas);
+
+        temporaryDate =
+            new Date(danas);
+
+        datumDisplay.textContent =
+            formatDateDisplay(
+                danas
+            );
+
+        datumInput.value =
+            formatDateForScript(
+                danas
+            );
+
     </script>
 
+
+
+    <!-- =====================================================
+         POSTOJEĆI ADMIN / FIREBASE SCRIPT
+    ===================================================== -->
 
     <script
         type="module"

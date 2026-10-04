@@ -2652,3 +2652,496 @@ footer {
         transition-duration: .01ms !important;
     }
 }
+
+/* =========================================================
+   KOCKICA FOOTBALL — MOBILE FINAL OVERRIDE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    /* =========================
+       NAVBAR
+       ========================= */
+
+    .navbar {
+        height: 58px;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        width: auto;
+        padding: 0 14px;
+    }
+
+    .logo img {
+        width: 82px;
+        height: auto;
+    }
+
+    .menu-button {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+        min-height: 100svh;
+        height: 100svh;
+        padding: 0 16px 72px;
+        justify-content: flex-end;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-kicker {
+        margin-bottom: 14px;
+        font-size: 8px;
+        letter-spacing: .14em;
+    }
+
+    .hero h1 {
+        margin: 0;
+        max-width: 100%;
+
+        font-size: clamp(52px, 15.5vw, 72px);
+        line-height: .84;
+        letter-spacing: -.075em;
+    }
+
+    .hero h1 strong {
+        margin-left: 12px;
+    }
+
+    .hero-description {
+        margin-top: 18px;
+
+        font-size: 11px;
+        line-height: 1.45;
+        letter-spacing: .01em;
+    }
+
+
+    /* BUTTONS — NE SMIJU BITI OGROMNI */
+
+    .hero-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+        min-height: 46px;
+        height: 46px;
+
+        padding: 0 11px;
+
+        font-size: 7px;
+        letter-spacing: .10em;
+    }
+
+    .hero-actions .button b {
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       HERO STATS
+       ========================= */
+
+    .hero-stats {
+        left: 16px;
+        right: 16px;
+        bottom: 14px;
+
+        gap: 12px;
+    }
+
+    .hero-stat {
+        gap: 3px;
+    }
+
+    .hero-stat strong {
+        font-size: 13px;
+    }
+
+    .hero-stat span {
+        font-size: 5px;
+        letter-spacing: .12em;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+
+
+    /* =========================
+       SECTIONS
+       ========================= */
+
+    .booking-section,
+    .gallery-section {
+        width: calc(100% - 32px);
+        margin: 0 auto;
+    }
+
+    .booking-section {
+        padding: 64px 0 72px;
+    }
+
+    .section-heading {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2,
+    .field-content h2 {
+        font-size: clamp(38px, 11vw, 50px);
+        line-height: .91;
+        letter-spacing: -.065em;
+    }
+
+    .section-heading > p {
+        max-width: 310px;
+        margin-top: 18px;
+
+        font-size: 10px;
+        line-height: 1.65;
+    }
+
+    .eyebrow {
+        margin-bottom: 12px;
+        font-size: 7px;
+    }
+
+
+    /* =========================
+       DAYS
+       ========================= */
+
+    .days-shell {
+        grid-template-columns: 30px minmax(0, 1fr) 30px;
+        gap: 6px;
+    }
+
+    .days {
+        gap: 6px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+    }
+
+    .days::-webkit-scrollbar {
+        display: none;
+    }
+
+    .days .day {
+        flex: 0 0 66px !important;
+
+        width: 66px !important;
+        min-width: 66px !important;
+        max-width: 66px !important;
+
+        height: 76px !important;
+        min-height: 76px !important;
+    }
+
+    .day span {
+        margin-top: 9px;
+        font-size: 5px;
+    }
+
+    .day strong {
+        margin-top: 4px;
+        font-size: 20px;
+    }
+
+    .day small {
+        margin-top: 3px;
+        font-size: 5px;
+    }
+
+    .days-arrow {
+        width: 30px;
+        height: 76px;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       BOOKING INFO
+       ========================= */
+
+    .booking-info {
+        margin-top: 18px;
+        gap: 10px;
+    }
+
+    .legend-item {
+        font-size: 7px;
+    }
+
+    .legend {
+        width: 5px;
+        height: 5px;
+    }
+
+    .selected-date {
+        font-size: 7px;
+    }
+
+
+    /* =========================
+       SCHEDULE
+       ========================= */
+
+    .schedule {
+        margin-top: 18px;
+    }
+
+    .schedule-row {
+        min-height: 58px;
+        padding: 12px 0;
+
+        grid-template-columns: 82px 1fr;
+    }
+
+    .schedule-time strong {
+        font-size: 14px;
+    }
+
+    .schedule-time span {
+        font-size: 8px;
+    }
+
+    .schedule-status {
+        gap: 7px;
+    }
+
+    .status-text {
+        font-size: 6px;
+        letter-spacing: .12em;
+    }
+
+    .booking-phone {
+        height: 30px;
+        padding: 0 8px;
+
+        font-size: 6px;
+        letter-spacing: .08em;
+    }
+
+
+    /* =========================
+       FIELD
+       ========================= */
+
+    .field-section {
+        display: block;
+        min-height: 0;
+    }
+
+    .field-image {
+        min-height: 300px;
+        height: 300px;
+    }
+
+    .field-content {
+        padding: 54px 18px 60px;
+    }
+
+    .field-content > p {
+        margin-top: 18px;
+
+        max-width: 330px;
+
+        font-size: 10px;
+        line-height: 1.7;
+    }
+
+    .field-features {
+        margin-top: 24px;
+    }
+
+    .feature {
+        padding: 12px 0;
+    }
+
+    .feature > strong {
+        font-size: 8px;
+    }
+
+    .feature b {
+        font-size: 8px;
+    }
+
+    .feature span {
+        margin-top: 3px;
+        font-size: 8px;
+    }
+
+    .text-link {
+        margin-top: 24px;
+        font-size: 7px;
+    }
+
+
+    /* =========================
+       GALLERY
+       ========================= */
+
+    .gallery-section {
+        padding: 64px 0;
+    }
+
+    .gallery-heading {
+        margin-bottom: 28px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .gallery-main {
+        width: 100%;
+        height: 300px;
+    }
+
+    .gallery-side {
+        width: 100%;
+        height: 210px;
+    }
+
+
+    /* =========================
+       FINAL CTA
+       ========================= */
+
+    .final-cta {
+        min-height: 480px;
+        height: 480px;
+    }
+
+    .cta-content {
+        width: calc(100% - 32px);
+    }
+
+    .cta-content h2 {
+        font-size: clamp(44px, 13vw, 58px);
+        line-height: .88;
+        letter-spacing: -.065em;
+    }
+
+    .cta-content .button {
+        margin-top: 20px;
+        min-height: 46px;
+        height: 46px;
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+        padding: 52px 16px 24px;
+    }
+
+    .footer-top {
+        display: block;
+    }
+
+    .footer-links {
+        margin-top: 42px;
+        gap: 36px;
+    }
+
+    .footer-bottom {
+        margin-top: 50px;
+        padding-top: 18px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .hero h1 {
+        font-size: 54px;
+    }
+
+    .hero-description {
+        font-size: 10px;
+    }
+
+    .hero-actions {
+        gap: 6px;
+    }
+
+    .hero-actions .button {
+        min-height: 44px;
+        height: 44px;
+        padding: 0 8px;
+        font-size: 6.5px;
+    }
+
+    .section-heading h2,
+    .field-content h2 {
+        font-size: 38px;
+    }
+
+    .days .day {
+        flex-basis: 62px !important;
+        width: 62px !important;
+        min-width: 62px !important;
+        max-width: 62px !important;
+    }
+
+    .field-image {
+        height: 270px;
+        min-height: 270px;
+    }
+
+    .gallery-main {
+        height: 280px;
+    }
+
+    .gallery-side {
+        height: 200px;
+    }
+
+    .final-cta {
+        min-height: 440px;
+        height: 440px;
+    }
+
+    .cta-content h2 {
+        font-size: 44px;
+    }
+}

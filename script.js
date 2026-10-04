@@ -397,18 +397,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       =========================================================
-       CUSTOM ADMIN DATE PICKER
-       =========================================================
-       ========================================================= */
+       CUSTOM ADMIN DATE + TIME PICKER
+    ========================================================= */
 
     const terminForm =
         document.getElementById("termin-form");
 
-
-    /*
-     * Ovo se izvršava samo na admin stranici.
-     */
 
     if (terminForm) {
 
@@ -422,15 +416,15 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("vrijeme-do");
 
 
-        /*
-         * Ako su inputi još uvijek type="date/time",
-         * pretvaramo ih u obične text inpute.
-         */
+        /* =====================================================
+           FORCE TEXT INPUTS
+        ===================================================== */
 
         if (datumInput) {
 
             datumInput.type = "text";
             datumInput.readOnly = true;
+
             datumInput.removeAttribute("min");
             datumInput.removeAttribute("max");
             datumInput.removeAttribute("step");
@@ -441,6 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             vrijemeOdInput.type = "text";
             vrijemeOdInput.readOnly = true;
+
             vrijemeOdInput.removeAttribute("min");
             vrijemeOdInput.removeAttribute("max");
             vrijemeOdInput.removeAttribute("step");
@@ -451,6 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             vrijemeDoInput.type = "text";
             vrijemeDoInput.readOnly = true;
+
             vrijemeDoInput.removeAttribute("min");
             vrijemeDoInput.removeAttribute("max");
             vrijemeDoInput.removeAttribute("step");
@@ -458,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /* =====================================================
-           CUSTOM PICKER CSS
+           PICKER CSS
         ===================================================== */
 
         const pickerStyle =
@@ -481,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 background: #0d0d0d;
 
                 border: 1px solid
-                    rgba(245, 196, 0, .28);
+                    rgba(245,196,0,.28);
 
                 border-radius: 20px;
 
@@ -507,17 +503,23 @@ document.addEventListener("DOMContentLoaded", () => {
             @keyframes kockicaPickerIn {
 
                 from {
+
                     opacity: 0;
+
                     transform:
                         translateY(-8px)
                         scale(.98);
+
                 }
 
                 to {
+
                     opacity: 1;
+
                     transform:
                         translateY(0)
                         scale(1);
+
                 }
 
             }
@@ -772,7 +774,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* TIME PICKER */
+            /* =================================================
+               TIME PICKER
+            ================================================= */
 
             .kockica-time-picker {
 
@@ -893,7 +897,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
+        /* =====================================================
+           PICKER STATE
+        ===================================================== */
+
         let aktivniPicker = null;
+
 
         let trenutniMjesec =
             new Date(
@@ -914,10 +923,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        /* =====================================================
+           POSITION PICKER
+        ===================================================== */
+
         function pozicionirajPicker(
             picker,
             input
         ) {
+
+            if (!picker || !input) {
+                return;
+            }
+
 
             const rect =
                 input.getBoundingClientRect();
@@ -979,6 +997,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        /* =====================================================
+           DATUM IZ INPUTA
+        ===================================================== */
+
         function datumIzInputa() {
 
             if (!datumInput?.value) {
@@ -1010,6 +1032,10 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
 
+
+        /* =====================================================
+           OTVORI DATE PICKER
+        ===================================================== */
 
         function otvoriDatePicker() {
 
@@ -1078,6 +1104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ←
                         </button>
 
+
                         <button
                             type="button"
                             class="kockica-picker-arrow"
@@ -1121,6 +1148,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     >
                         Odaberi datum
                     </span>
+
 
                     <button
                         type="button"
@@ -1170,29 +1198,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     trenutniMjesec.getMonth();
 
 
+                const mjeseci = [
+                    "JANUAR",
+                    "FEBRUAR",
+                    "MART",
+                    "APRIL",
+                    "MAJ",
+                    "JUNI",
+                    "JULI",
+                    "AVGUST",
+                    "SEPTEMBAR",
+                    "OKTOBAR",
+                    "NOVEMBAR",
+                    "DECEMBAR"
+                ];
+
+
                 title.textContent =
-                    `${[
-                        "JANUAR",
-                        "FEBRUAR",
-                        "MART",
-                        "APRIL",
-                        "MAJ",
-                        "JUNI",
-                        "JULI",
-                        "AVGUST",
-                        "SEPTEMBAR",
-                        "OKTOBAR",
-                        "NOVEMBAR",
-                        "DECEMBAR"
-                    ][mjesec]} ${godina}`;
+                    `${mjeseci[mjesec]} ${godina}`;
 
 
-                grid.innerHTML = "";
+                grid.innerHTML =
+                    "";
 
-
-                /*
-                 * Ponedjeljak = 0
-                 */
 
                 const prviDan =
                     new Date(
@@ -1239,6 +1267,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
+                /* PRETHODNI DANI */
+
                 for (
                     let i = offset - 1;
                     i >= 0;
@@ -1255,21 +1285,29 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
-                    dugme.type = "button";
+                    dugme.type =
+                        "button";
+
 
                     dugme.className =
                         "kockica-calendar-day other-month";
 
+
                     dugme.textContent =
                         dan;
 
-                    dugme.disabled = true;
+
+                    dugme.disabled =
+                        true;
+
 
                     grid.appendChild(
                         dugme
                     );
                 }
 
+
+                /* TRENUTNI MJESEC */
 
                 for (
                     let dan = 1;
@@ -1283,7 +1321,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
-                    dugme.type = "button";
+                    dugme.type =
+                        "button";
+
 
                     dugme.className =
                         "kockica-calendar-day";
@@ -1323,17 +1363,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     if (
-                        datumInput.value &&
-                        datumInput.value
-                            .startsWith(
-                                String(dan)
-                                    .padStart(2, "0") +
-                                "." +
-                                String(mjesec + 1)
-                                    .padStart(2, "0") +
-                                "." +
-                                godina
-                            )
+                        datumInput.value ===
+                        formatDatumZaPrikaz(
+                            firebaseDatum
+                        )
                     ) {
 
                         dugme.classList.add(
@@ -1356,9 +1389,12 @@ document.addEventListener("DOMContentLoaded", () => {
                                 );
 
 
+                            /*
+                             * ODMAH ZATVORI
+                             */
+
                             zatvoriPicker();
 
-                            datumInput.focus();
                         }
                     );
 
@@ -1369,6 +1405,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
+                /* POPUNI DO 42 POLJA */
+
                 while (
                     grid.children.length < 42
                 ) {
@@ -1378,12 +1416,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             "button"
                         );
 
-                    dugme.type = "button";
+
+                    dugme.type =
+                        "button";
+
 
                     dugme.className =
                         "kockica-calendar-day other-month";
 
-                    dugme.disabled = true;
+
+                    dugme.disabled =
+                        true;
+
 
                     dugme.textContent =
                         String(
@@ -1392,6 +1436,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             offset +
                             1
                         );
+
 
                     grid.appendChild(
                         dugme
@@ -1424,10 +1469,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         trenutniMjesec =
                             new Date(
-                                trenutniMjesec
-                                    .getFullYear(),
-                                trenutniMjesec
-                                    .getMonth() - 1,
+                                trenutniMjesec.getFullYear(),
+                                trenutniMjesec.getMonth() - 1,
                                 1
                             );
 
@@ -1446,10 +1489,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         trenutniMjesec =
                             new Date(
-                                trenutniMjesec
-                                    .getFullYear(),
-                                trenutniMjesec
-                                    .getMonth() + 1,
+                                trenutniMjesec.getFullYear(),
+                                trenutniMjesec.getMonth() + 1,
                                 1
                             );
 
@@ -1478,15 +1519,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             );
 
 
-                        trenutniMjesec =
-                            new Date(
-                                danas.getFullYear(),
-                                danas.getMonth(),
-                                1
-                            );
+                        zatvoriPicker();
 
-
-                        iscrtajKalendar();
                     }
                 );
 
@@ -1494,9 +1528,15 @@ document.addEventListener("DOMContentLoaded", () => {
             iscrtajKalendar();
 
 
-            pozicionirajPicker(
-                picker,
-                datumInput
+            requestAnimationFrame(
+                () => {
+
+                    pozicionirajPicker(
+                        picker,
+                        datumInput
+                    );
+
+                }
             );
         }
 
@@ -1505,9 +1545,7 @@ document.addEventListener("DOMContentLoaded", () => {
            CUSTOM TIME PICKER
         ===================================================== */
 
-        function otvoriTimePicker(
-            input
-        ) {
+        function otvoriTimePicker(input) {
 
             zatvoriPicker();
 
@@ -1564,7 +1602,8 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            aktivniPicker = picker;
+            aktivniPicker =
+                picker;
 
 
             const grid =
@@ -1656,9 +1695,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         input.value =
                             vrijeme;
 
+
+                        /*
+                         * ODMAH ZATVORI
+                         */
+
                         zatvoriPicker();
 
-                        input.focus();
                     }
                 );
 
@@ -1669,15 +1712,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            pozicionirajPicker(
-                picker,
-                input
+            requestAnimationFrame(
+                () => {
+
+                    pozicionirajPicker(
+                        picker,
+                        input
+                    );
+
+                }
             );
         }
 
 
         /* =====================================================
-           CLICK INPUT
+           INPUT CLICK
+           
+           VAŽNO:
+           NEMA FOCUS EVENTA.
+           Picker se otvara samo klikom.
         ===================================================== */
 
         if (datumInput) {
@@ -1689,19 +1742,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     event.preventDefault();
 
                     otvoriDatePicker();
-                }
-            );
-
-
-            datumInput.addEventListener(
-                "focus",
-                () => {
-
-                    if (
-                        !aktivniPicker
-                    ) {
-                        otvoriDatePicker();
-                    }
                 }
             );
         }
@@ -1720,21 +1760,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
                 }
             );
-
-
-            vrijemeOdInput.addEventListener(
-                "focus",
-                () => {
-
-                    if (
-                        !aktivniPicker
-                    ) {
-                        otvoriTimePicker(
-                            vrijemeOdInput
-                        );
-                    }
-                }
-            );
         }
 
 
@@ -1751,26 +1776,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
                 }
             );
-
-
-            vrijemeDoInput.addEventListener(
-                "focus",
-                () => {
-
-                    if (
-                        !aktivniPicker
-                    ) {
-                        otvoriTimePicker(
-                            vrijemeDoInput
-                        );
-                    }
-                }
-            );
         }
 
 
         /* =====================================================
-           ZATVARANJE PICKERA
+           ZATVARANJE KLIKOM VAN PICKERA
         ===================================================== */
 
         document.addEventListener(
@@ -1808,6 +1818,30 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
+        /* =====================================================
+           ESC
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape" &&
+                    aktivniPicker
+                ) {
+
+                    zatvoriPicker();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           RESIZE
+        ===================================================== */
+
         window.addEventListener(
             "resize",
             () => {
@@ -1832,37 +1866,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         input
                     );
                 }
-            }
-        );
 
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (!aktivniPicker) {
-                    return;
-                }
-
-
-                const input =
-                    document.activeElement;
-
-
-                if (
-                    input === datumInput ||
-                    input === vrijemeOdInput ||
-                    input === vrijemeDoInput
-                ) {
-
-                    pozicionirajPicker(
-                        aktivniPicker,
-                        input
-                    );
-                }
-            },
-            {
-                passive: true
             }
         );
 
@@ -1896,12 +1900,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
+            zatvoriPicker();
+
+
             terminForm.reset();
 
 
             if (editIdInput) {
 
-                editIdInput.value = "";
+                editIdInput.value =
+                    "";
             }
 
 
@@ -1914,10 +1922,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (cancelEdit) {
 
-                cancelEdit.hidden = true;
+                cancelEdit.hidden =
+                    true;
             }
         }
 
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
 
         terminForm.addEventListener(
             "submit",
@@ -2036,7 +2049,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 /* OD < DO */
 
-                if (noviOd >= noviDo) {
+                if (
+                    noviOd >= noviDo
+                ) {
 
                     alert(
                         "Vrijeme završetka mora biti nakon početka."
@@ -2058,13 +2073,16 @@ document.addEventListener("DOMContentLoaded", () => {
                                 editId &&
                                 id === editId
                             ) {
+
                                 return false;
                             }
 
 
                             if (
-                                termin.datum !== datum
+                                termin.datum !==
+                                datum
                             ) {
+
                                 return false;
                             }
 
@@ -2161,6 +2179,10 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
+        /* =====================================================
+           CANCEL EDIT
+        ===================================================== */
+
         if (cancelEdit) {
 
             cancelEdit.addEventListener(
@@ -2206,7 +2228,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                 const B =
                                     `${b[1].datum} ${b[1].vrijemeOd}`;
 
-                                return A.localeCompare(B);
+                                return A.localeCompare(
+                                    B
+                                );
                             }
                         );
 
@@ -2342,6 +2366,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                     }
 
 
+                                    zatvoriPicker();
+
+
                                     datumInput.value =
                                         formatDatumZaPrikaz(
                                             termin.datum
@@ -2381,8 +2408,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                         top: 0,
                                         behavior: "smooth"
                                     });
+
                                 }
                             );
+
                         });
 
 
@@ -2456,11 +2485,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ".schedule"
         );
 
-
-    /*
-     * Ako nismo na javnoj stranici,
-     * završavamo ovdje.
-     */
 
     if (!schedule) {
         return;
@@ -2538,14 +2562,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       AŽURIRAJ DATUM
+       AŽURIRAJ ODABRANI DATUM
     ========================================================= */
 
     function azurirajOdabraniDatum() {
 
-        if (
-            !odabraniDatum
-        ) {
+        if (!odabraniDatum) {
             return;
         }
 
@@ -2655,6 +2677,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${danNedelje(date)}
                 </span>
 
+
                 <strong>
                     ${String(
                         date.getDate()
@@ -2663,6 +2686,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "0"
                     )}
                 </strong>
+
 
                 <small>
                     ${mjesecNaziv(date)}
@@ -3002,6 +3026,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
             `;
+
         }
     );
 

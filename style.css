@@ -1,25 +1,25 @@
-
 :root {
     --black: #050505;
     --black-2: #090909;
     --black-3: #101010;
-    --surface: #121212;
+    --surface: #141414;
 
     --yellow: #ffd400;
     --yellow-light: #ffe45c;
 
     --white: #ffffff;
-    --muted: rgba(255, 255, 255, .58);
-    --muted-2: rgba(255, 255, 255, .34);
+    --muted: rgba(255,255,255,.58);
+    --muted-2: rgba(255,255,255,.34);
 
     --green: #25e66f;
     --red: #ff4545;
 
-    --line: rgba(255, 255, 255, .09);
+    --line: rgba(255,255,255,.09);
 
     --max: 1440px;
-    --ease: cubic-bezier(.22, .8, .2, 1);
+    --ease: cubic-bezier(.22,.8,.2,1);
 }
+
 
 /* =========================================================
    RESET
@@ -28,9 +28,9 @@
 *,
 *::before,
 *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -49,12 +49,13 @@ body {
     background:
         radial-gradient(
             circle at 80% 10%,
-            rgba(255, 212, 0, .035),
+            rgba(255,212,0,.035),
             transparent 30%
         ),
         var(--black);
 
     color: var(--white);
+
     font-family: "DM Sans", sans-serif;
 
     -webkit-font-smoothing: antialiased;
@@ -90,6 +91,11 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+section[id] {
+    scroll-margin-top: 90px;
+}
+
+
 /* =========================================================
    NAVBAR
 ========================================================= */
@@ -112,17 +118,17 @@ a {
     align-items: center;
     justify-content: space-between;
 
-    background: rgba(8, 8, 8, .72);
+    background: rgba(8,8,8,.72);
 
-    border: 1px solid rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255,255,255,.10);
     border-radius: 18px;
 
     backdrop-filter: blur(24px) saturate(140%);
     -webkit-backdrop-filter: blur(24px) saturate(140%);
 
     box-shadow:
-        0 14px 50px rgba(0, 0, 0, .22),
-        inset 0 1px 0 rgba(255, 255, 255, .05);
+        0 14px 50px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .logo {
@@ -145,7 +151,7 @@ a {
 .desktop-nav a {
     position: relative;
 
-    color: rgba(255, 255, 255, .55);
+    color: rgba(255,255,255,.55);
 
     font-size: 10px;
     font-weight: 700;
@@ -217,12 +223,13 @@ a {
     transform: translateY(-2px);
 
     box-shadow:
-        0 10px 30px rgba(255, 212, 0, .18);
+        0 10px 30px rgba(255,212,0,.18);
 }
 
 .nav-button-arrow {
     font-size: 16px;
 }
+
 
 /* =========================================================
    MOBILE MENU
@@ -252,10 +259,10 @@ a {
 
     cursor: pointer;
 
-    border: 1px solid rgba(255, 255, 255, .11);
+    border: 1px solid rgba(255,255,255,.11);
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .035);
+    background: rgba(255,255,255,.035);
 }
 
 .menu-button span {
@@ -286,7 +293,7 @@ a {
     background:
         radial-gradient(
             circle at 90% 10%,
-            rgba(255, 212, 0, .08),
+            rgba(255,212,0,.08),
             transparent 28%
         ),
         #070707;
@@ -318,7 +325,7 @@ a {
     justify-content: space-between;
 }
 
-.mobile-menu-top img {
+.mobile-logo img {
     width: 102px;
 }
 
@@ -334,10 +341,10 @@ a {
 
     cursor: pointer;
 
-    border: 1px solid rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .04);
+    background: rgba(255,255,255,.04);
 }
 
 .mobile-close span {
@@ -361,17 +368,17 @@ a {
     display: flex;
     flex-direction: column;
 
-    margin-top: 13vh;
+    margin-top: 12vh;
 }
 
 .mobile-nav a {
-    min-height: 94px;
+    min-height: 78px;
 
     display: grid;
-    grid-template-columns: 32px 1fr;
+    grid-template-columns: 30px 1fr;
     align-items: center;
 
-    border-bottom: 1px solid rgba(255, 255, 255, .09);
+    border-bottom: 1px solid rgba(255,255,255,.09);
 
     transition:
         color .25s ease,
@@ -379,12 +386,12 @@ a {
 }
 
 .mobile-nav a:first-child {
-    border-top: 1px solid rgba(255, 255, 255, .09);
+    border-top: 1px solid rgba(255,255,255,.09);
 }
 
 .mobile-nav a:hover {
     color: var(--yellow);
-    padding-left: 8px;
+    padding-left: 6px;
 }
 
 .mobile-nav small {
@@ -392,13 +399,14 @@ a {
 
     font-size: 8px;
     font-weight: 700;
+
     letter-spacing: .12em;
 }
 
 .mobile-nav strong {
     font-family: "Manrope", sans-serif;
 
-    font-size: clamp(38px, 11vw, 56px);
+    font-size: clamp(34px, 9vw, 50px);
     font-weight: 700;
 
     line-height: .9;
@@ -413,13 +421,14 @@ a {
 
     padding-top: 20px;
 
-    color: rgba(255, 255, 255, .25);
+    color: rgba(255,255,255,.25);
 
     font-size: 7px;
     font-weight: 700;
 
     letter-spacing: .16em;
 }
+
 
 /* =========================================================
    HERO
@@ -470,16 +479,16 @@ a {
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, .96) 0%,
-            rgba(0, 0, 0, .78) 32%,
-            rgba(0, 0, 0, .25) 76%,
-            rgba(0, 0, 0, .45) 100%
+            rgba(0,0,0,.96) 0%,
+            rgba(0,0,0,.78) 32%,
+            rgba(0,0,0,.25) 76%,
+            rgba(0,0,0,.45) 100%
         ),
         linear-gradient(
             0deg,
-            rgba(0, 0, 0, .92) 0%,
+            rgba(0,0,0,.92) 0%,
             transparent 52%,
-            rgba(0, 0, 0, .28) 100%
+            rgba(0,0,0,.28) 100%
         );
 }
 
@@ -494,7 +503,7 @@ a {
 
     border-radius: 50%;
 
-    background: rgba(255, 212, 0, .12);
+    background: rgba(255,212,0,.12);
 
     filter: blur(110px);
 
@@ -519,7 +528,7 @@ a {
     gap: 11px;
     margin-bottom: 30px;
 
-    color: rgba(255, 255, 255, .63);
+    color: rgba(255,255,255,.63);
 
     font-size: 9px;
     font-weight: 700;
@@ -538,15 +547,15 @@ a {
     background: var(--yellow);
 
     box-shadow:
-        0 0 0 5px rgba(255, 212, 0, .08),
-        0 0 18px rgba(255, 212, 0, .60);
+        0 0 0 5px rgba(255,212,0,.08),
+        0 0 18px rgba(255,212,0,.60);
 }
 
 .hero-kicker i {
     width: 22px;
     height: 1px;
 
-    background: rgba(255, 255, 255, .25);
+    background: rgba(255,255,255,.25);
 }
 
 .hero h1 {
@@ -575,7 +584,7 @@ a {
 .hero-description {
     margin-top: 44px;
 
-    color: rgba(255, 255, 255, .67);
+    color: rgba(255,255,255,.67);
 
     font-size: 16px;
     line-height: 1.55;
@@ -588,6 +597,7 @@ a {
     gap: 10px;
     margin-top: 34px;
 }
+
 
 /* =========================================================
    BUTTONS
@@ -637,15 +647,15 @@ a {
     transform: translateY(-3px);
 
     box-shadow:
-        0 16px 38px rgba(255, 212, 0, .17);
+        0 16px 38px rgba(255,212,0,.17);
 }
 
 .button-glass {
     color: var(--white);
 
-    border: 1px solid rgba(255, 255, 255, .22);
+    border: 1px solid rgba(255,255,255,.22);
 
-    background: rgba(255, 255, 255, .055);
+    background: rgba(255,255,255,.055);
 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -660,6 +670,7 @@ a {
     transform: translateY(-3px);
 }
 
+
 /* =========================================================
    HERO STATS
 ========================================================= */
@@ -667,8 +678,8 @@ a {
 .hero-stats {
     position: absolute;
 
-    left: clamp(20px, 5vw, 72px);
-    right: clamp(20px, 5vw, 72px);
+    left: clamp(20px,5vw,72px);
+    right: clamp(20px,5vw,72px);
     bottom: 34px;
 
     display: flex;
@@ -682,7 +693,6 @@ a {
 .hero-stat {
     display: flex;
     flex-direction: column;
-
     gap: 4px;
 }
 
@@ -696,7 +706,7 @@ a {
 }
 
 .hero-stat span {
-    color: rgba(255, 255, 255, .38);
+    color: rgba(255,255,255,.38);
 
     font-size: 7px;
     font-weight: 700;
@@ -707,7 +717,7 @@ a {
 .hero-scroll {
     position: absolute;
 
-    right: clamp(20px, 5vw, 72px);
+    right: clamp(20px,5vw,72px);
     bottom: 36px;
 
     display: flex;
@@ -715,7 +725,7 @@ a {
 
     gap: 12px;
 
-    color: rgba(255, 255, 255, .38);
+    color: rgba(255,255,255,.38);
 
     font-size: 7px;
     font-weight: 700;
@@ -727,8 +737,9 @@ a {
     width: 48px;
     height: 1px;
 
-    background: rgba(255, 255, 255, .30);
+    background: rgba(255,255,255,.30);
 }
+
 
 /* =========================================================
    GENERAL SECTIONS
@@ -747,7 +758,9 @@ a {
 .section-heading {
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) 390px;
+    grid-template-columns:
+        minmax(0,1fr)
+        390px;
 
     gap: 80px;
 
@@ -763,7 +776,7 @@ a {
     gap: 12px;
     margin-bottom: 23px;
 
-    color: rgba(255, 255, 255, .34);
+    color: rgba(255,255,255,.34);
 
     font-size: 8px;
     font-weight: 700;
@@ -780,7 +793,7 @@ a {
 .cta-content h2 {
     font-family: "Manrope", sans-serif;
 
-    font-size: clamp(54px, 6.3vw, 94px);
+    font-size: clamp(54px,6.3vw,94px);
 
     line-height: .90;
     font-weight: 700;
@@ -802,10 +815,9 @@ a {
     line-height: 1.8;
 }
 
+
 /* =========================================================
    DAYS
-   VAŽNO:
-   UVIJEK JEDAN HORIZONTALNI RED
 ========================================================= */
 
 .days-shell {
@@ -816,7 +828,7 @@ a {
 
     grid-template-columns:
         52px
-        minmax(0, 1fr)
+        minmax(0,1fr)
         52px;
 
     overflow: hidden;
@@ -830,8 +842,10 @@ a {
     min-width: 0;
 
     display: flex !important;
+
     flex-direction: row !important;
     flex-wrap: nowrap !important;
+
     align-items: stretch;
 
     gap: 10px;
@@ -844,7 +858,6 @@ a {
     white-space: nowrap;
 
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
 
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -852,8 +865,6 @@ a {
 
 .days::-webkit-scrollbar {
     display: none;
-    width: 0;
-    height: 0;
 }
 
 .days > .day {
@@ -869,6 +880,7 @@ a {
     min-height: 104px;
 
     display: flex !important;
+
     flex-direction: column !important;
 
     align-items: center;
@@ -883,20 +895,18 @@ a {
     cursor: pointer;
 
     background: transparent;
-    color: rgba(255, 255, 255, .43);
+
+    color: rgba(255,255,255,.43);
 
     transition:
         background .3s ease,
         color .3s ease,
         transform .3s var(--ease);
-
-    scroll-snap-align: center;
 }
 
 .day:hover {
     color: var(--white);
-
-    background: rgba(255, 255, 255, .035);
+    background: rgba(255,255,255,.035);
 }
 
 .day.active {
@@ -923,7 +933,6 @@ a {
     font-weight: 700;
 
     line-height: 1;
-
     letter-spacing: -.05em;
 }
 
@@ -944,7 +953,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    color: rgba(255, 255, 255, .35);
+    color: rgba(255,255,255,.35);
 
     background: transparent;
 
@@ -962,6 +971,7 @@ a {
     background: var(--black-3);
 }
 
+
 /* =========================================================
    BOOKING INFO
 ========================================================= */
@@ -976,7 +986,7 @@ a {
 
     margin: 14px 0;
 
-    color: rgba(255, 255, 255, .40);
+    color: rgba(255,255,255,.40);
 
     font-size: 8px;
     font-weight: 700;
@@ -1003,7 +1013,7 @@ a {
 
     box-shadow:
         0 0 6px var(--green),
-        0 0 13px rgba(37, 230, 111, .55);
+        0 0 13px rgba(37,230,111,.55);
 }
 
 .legend.busy {
@@ -1011,13 +1021,14 @@ a {
 
     box-shadow:
         0 0 6px var(--red),
-        0 0 13px rgba(255, 69, 69, .55);
+        0 0 13px rgba(255,69,69,.55);
 }
 
 .selected-date {
     margin-left: auto;
     color: var(--white);
 }
+
 
 /* =========================================================
    SCHEDULE
@@ -1036,7 +1047,7 @@ a {
 
     grid-template-columns:
         110px
-        minmax(0, 1fr)
+        minmax(0,1fr)
         230px;
 
     align-items: center;
@@ -1051,7 +1062,7 @@ a {
 }
 
 .schedule-row:hover {
-    background: rgba(255, 255, 255, .022);
+    background: rgba(255,255,255,.022);
     padding-left: 9px;
 }
 
@@ -1064,21 +1075,13 @@ a {
     letter-spacing: -.05em;
 }
 
-.schedule-time strong {
-    font-weight: inherit;
-}
-
 .schedule-time span {
-    color: rgba(255, 255, 255, .28);
-}
-
-.schedule-line {
-    height: 1px;
-    background: var(--line);
+    color: rgba(255,255,255,.28);
 }
 
 .schedule-status {
     display: flex;
+
     align-items: center;
     justify-content: flex-end;
 
@@ -1117,7 +1120,7 @@ a {
 
     box-shadow:
         0 0 5px var(--green),
-        0 0 12px rgba(37, 230, 111, .7);
+        0 0 12px rgba(37,230,111,.7);
 }
 
 .status-busy {
@@ -1129,12 +1132,11 @@ a {
 
     box-shadow:
         0 0 5px var(--red),
-        0 0 12px rgba(255, 69, 69, .7);
+        0 0 12px rgba(255,69,69,.7);
 }
 
 .booking-phone {
     min-width: 145px;
-
     height: 42px;
 
     display: inline-flex;
@@ -1142,7 +1144,6 @@ a {
     justify-content: center;
 
     gap: 9px;
-
     padding: 0 14px;
 
     border-radius: 9px;
@@ -1173,53 +1174,9 @@ a {
     transform: translateY(-2px);
 
     box-shadow:
-        0 10px 25px rgba(255, 212, 0, .14);
+        0 10px 25px rgba(255,212,0,.14);
 }
 
-/* =========================================================
-   RESERVE BUTTON
-========================================================= */
-
-.reserve-button {
-    min-width: 138px;
-    height: 42px;
-
-    border-radius: 9px;
-
-    background: var(--yellow);
-    color: var(--black);
-
-    font-size: 8px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: .10em;
-
-    cursor: pointer;
-
-    transition:
-        transform .3s var(--ease),
-        background .3s ease,
-        box-shadow .3s ease;
-}
-
-.reserve-button:hover {
-    background: var(--yellow-light);
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 25px rgba(255, 212, 0, .14);
-}
-
-.reserve-button:disabled {
-    background: #181818;
-    color: rgba(255, 255, 255, .18);
-
-    cursor: not-allowed;
-
-    box-shadow: none;
-}
 
 /* =========================================================
    FIELD
@@ -1231,8 +1188,8 @@ a {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.18fr)
-        minmax(0, .82fr);
+        minmax(0,1.18fr)
+        minmax(0,.82fr);
 
     min-height: 720px;
 
@@ -1253,8 +1210,7 @@ a {
 
     object-fit: cover;
 
-    transition:
-        transform 1.2s var(--ease);
+    transition: transform 1.2s var(--ease);
 }
 
 .field-image:hover img {
@@ -1268,7 +1224,7 @@ a {
     background:
         linear-gradient(
             0deg,
-            rgba(0, 0, 0, .78),
+            rgba(0,0,0,.78),
             transparent 48%
         );
 }
@@ -1301,7 +1257,7 @@ a {
 
     gap: 9px;
 
-    color: rgba(255, 255, 255, .52);
+    color: rgba(255,255,255,.52);
 
     font-size: 7px;
     font-weight: 700;
@@ -1323,7 +1279,7 @@ a {
 
     padding:
         90px
-        clamp(35px, 7vw, 110px);
+        clamp(35px,7vw,110px);
 
     display: flex;
     flex-direction: column;
@@ -1331,7 +1287,7 @@ a {
 }
 
 .field-content h2 {
-    font-size: clamp(52px, 5.5vw, 78px);
+    font-size: clamp(52px,5.5vw,78px);
 }
 
 .field-content > p {
@@ -1354,7 +1310,7 @@ a {
 
     grid-template-columns:
         42px
-        minmax(0, 1fr);
+        minmax(0,1fr);
 
     gap: 13px;
 
@@ -1369,6 +1325,7 @@ a {
 
 .feature > strong {
     color: var(--yellow);
+
     font-size: 9px;
 }
 
@@ -1384,7 +1341,7 @@ a {
 
     margin-top: 5px;
 
-    color: rgba(255, 255, 255, .34);
+    color: rgba(255,255,255,.34);
 
     font-size: 9px;
 }
@@ -1412,13 +1369,13 @@ a {
     font-size: 18px;
     font-weight: 400;
 
-    transition:
-        transform .3s ease;
+    transition: transform .3s ease;
 }
 
 .text-link:hover b {
     transform: translateX(6px);
 }
+
 
 /* =========================================================
    GALLERY
@@ -1436,8 +1393,8 @@ a {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.45fr)
-        minmax(260px, .75fr);
+        minmax(0,1.45fr)
+        minmax(260px,.75fr);
 
     gap: 14px;
 
@@ -1461,8 +1418,7 @@ a {
 
     object-fit: cover;
 
-    transition:
-        transform 1s var(--ease);
+    transition: transform 1s var(--ease);
 }
 
 .gallery-main:hover img,
@@ -1477,7 +1433,7 @@ a {
     background:
         linear-gradient(
             0deg,
-            rgba(0, 0, 0, .62),
+            rgba(0,0,0,.62),
             transparent 45%
         );
 }
@@ -1497,6 +1453,7 @@ a {
 
     letter-spacing: .15em;
 }
+
 
 /* =========================================================
    CTA
@@ -1540,9 +1497,9 @@ a {
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, .96),
-            rgba(0, 0, 0, .58) 60%,
-            rgba(0, 0, 0, .35)
+            rgba(0,0,0,.96),
+            rgba(0,0,0,.58) 60%,
+            rgba(0,0,0,.35)
         );
 }
 
@@ -1554,12 +1511,13 @@ a {
 .cta-content h2 {
     max-width: 900px;
 
-    font-size: clamp(62px, 8vw, 120px);
+    font-size: clamp(62px,8vw,120px);
 }
 
 .cta-content .button {
     margin-top: 42px;
 }
+
 
 /* =========================================================
    FOOTER
@@ -1570,7 +1528,7 @@ footer {
 
     padding:
         82px
-        clamp(20px, 5vw, 72px)
+        clamp(20px,5vw,72px)
         28px;
 
     background: #040404;
@@ -1587,10 +1545,6 @@ footer {
     border-bottom: 1px solid var(--line);
 }
 
-.footer-brand {
-    min-width: 0;
-}
-
 .footer-brand img {
     width: 120px;
 }
@@ -1600,7 +1554,7 @@ footer {
 
     margin-top: 20px;
 
-    color: rgba(255, 255, 255, .31);
+    color: rgba(255,255,255,.31);
 
     font-size: 11px;
     line-height: 1.7;
@@ -1609,7 +1563,7 @@ footer {
 .footer-links {
     display: flex;
 
-    gap: clamp(50px, 9vw, 120px);
+    gap: clamp(50px,9vw,120px);
 }
 
 .footer-links > div {
@@ -1622,7 +1576,7 @@ footer {
 .footer-links span {
     margin-bottom: 7px;
 
-    color: rgba(255, 255, 255, .25);
+    color: rgba(255,255,255,.25);
 
     font-size: 7px;
     font-weight: 700;
@@ -1631,12 +1585,11 @@ footer {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, .58);
+    color: rgba(255,255,255,.58);
 
     font-size: 10px;
 
-    transition:
-        color .3s ease;
+    transition: color .3s ease;
 }
 
 .footer-links a:hover {
@@ -1652,7 +1605,7 @@ footer {
 
     padding-top: 24px;
 
-    color: rgba(255, 255, 255, .21);
+    color: rgba(255,255,255,.21);
 
     font-size: 7px;
     font-weight: 700;
@@ -1669,22 +1622,17 @@ footer {
     gap: 25px;
 }
 
-/* =========================================================
-   ADMIN
-========================================================= */
-
 .admin-link {
     position: relative;
 
-    color: rgba(255, 255, 255, .28);
+    color: rgba(255,255,255,.28);
 
     font-size: 7px;
     font-weight: 800;
 
     letter-spacing: .16em;
 
-    transition:
-        color .25s ease;
+    transition: color .25s ease;
 }
 
 .admin-link::after {
@@ -1700,8 +1648,7 @@ footer {
 
     background: var(--yellow);
 
-    transition:
-        width .3s var(--ease);
+    transition: width .3s var(--ease);
 }
 
 .admin-link:hover {
@@ -1711,6 +1658,7 @@ footer {
 .admin-link:hover::after {
     width: 100%;
 }
+
 
 /* =========================================================
    MODAL
@@ -1738,7 +1686,7 @@ footer {
     position: absolute;
     inset: 0;
 
-    background: rgba(0, 0, 0, .84);
+    background: rgba(0,0,0,.84);
 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -1747,7 +1695,7 @@ footer {
 .modal-card {
     position: relative;
 
-    width: min(500px, 100%);
+    width: min(500px,100%);
 
     padding: 43px;
 
@@ -1760,12 +1708,12 @@ footer {
             #0c0c0c
         );
 
-    border: 1px solid rgba(255, 255, 255, .11);
+    border: 1px solid rgba(255,255,255,.11);
     border-radius: 18px;
 
     box-shadow:
-        0 35px 120px rgba(0, 0, 0, .75),
-        inset 0 1px 0 rgba(255, 255, 255, .04);
+        0 35px 120px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.04);
 }
 
 .modal-close {
@@ -1783,9 +1731,8 @@ footer {
 
     border-radius: 10px;
 
-    background: rgba(255, 255, 255, .05);
-
-    color: rgba(255, 255, 255, .55);
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.55);
 
     font-size: 23px;
 
@@ -1798,9 +1745,7 @@ footer {
 
 .modal-close:hover {
     color: var(--white);
-
-    background:
-        rgba(255, 255, 255, .09);
+    background: rgba(255,255,255,.09);
 }
 
 .modal-kicker {
@@ -1809,7 +1754,7 @@ footer {
 
     gap: 8px;
 
-    color: rgba(255, 255, 255, .37);
+    color: rgba(255,255,255,.37);
 
     font-size: 8px;
     font-weight: 800;
@@ -1826,7 +1771,7 @@ footer {
     background: var(--yellow);
 
     box-shadow:
-        0 0 10px rgba(255, 212, 0, .45);
+        0 0 10px rgba(255,212,0,.45);
 }
 
 .modal-card h3 {
@@ -1849,7 +1794,7 @@ footer {
 .modal-date {
     margin-top: 12px;
 
-    color: rgba(255, 255, 255, .37);
+    color: rgba(255,255,255,.37);
 
     font-size: 11px;
 }
@@ -1863,7 +1808,7 @@ footer {
 
     margin-bottom: 17px;
 
-    color: rgba(255, 255, 255, .49);
+    color: rgba(255,255,255,.49);
 
     font-size: 8px;
     font-weight: 700;
@@ -1879,16 +1824,16 @@ footer {
     height: 54px;
 
     margin-top: 8px;
+
     padding: 0 15px;
 
     outline: none;
 
     color: var(--white);
 
-    background:
-        rgba(255, 255, 255, .045);
+    background: rgba(255,255,255,.045);
 
-    border: 1px solid rgba(255, 255, 255, .09);
+    border: 1px solid rgba(255,255,255,.09);
     border-radius: 10px;
 
     transition:
@@ -1897,14 +1842,12 @@ footer {
 }
 
 #bookingForm input::placeholder {
-    color: rgba(255, 255, 255, .22);
+    color: rgba(255,255,255,.22);
 }
 
 #bookingForm input:focus {
     border-color: var(--yellow);
-
-    background:
-        rgba(255, 255, 255, .065);
+    background: rgba(255,255,255,.065);
 }
 
 .full-button {
@@ -1919,6 +1862,7 @@ footer {
 
     font-size: 10px;
 }
+
 
 /* =========================================================
    TABLET
@@ -1936,12 +1880,12 @@ footer {
     }
 
     .hero h1 {
-        font-size: clamp(70px, 12vw, 140px);
+        font-size: clamp(70px,12vw,140px);
     }
 
     .section-heading {
         grid-template-columns:
-            minmax(0, 1fr)
+            minmax(0,1fr)
             320px;
 
         gap: 40px;
@@ -1954,8 +1898,7 @@ footer {
     }
 
     .field-content {
-        padding:
-            70px 48px;
+        padding: 70px 48px;
     }
 
     .gallery {
@@ -1965,12 +1908,13 @@ footer {
     .schedule-row {
         grid-template-columns:
             100px
-            minmax(0, 1fr)
+            minmax(0,1fr)
             200px;
 
         gap: 20px;
     }
 }
+
 
 /* =========================================================
    MOBILE
@@ -1982,53 +1926,53 @@ footer {
         scroll-padding-top: 76px;
     }
 
-    /* -----------------------------------------------------
-       NAV
-    ----------------------------------------------------- */
+
+    /* NAV */
 
     .navbar {
-        top: 10px;
+        top: 9px;
 
         width: calc(100% - 20px);
-        height: 60px;
+        height: 58px;
 
-        padding:
-            0 8px 0 16px;
+        padding: 0 7px 0 15px;
 
-        border-radius: 15px;
+        border-radius: 14px;
     }
 
     .logo img {
-        width: 98px;
+        width: 94px;
     }
 
     .menu-button {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
 
-        border-radius: 11px;
+        border-radius: 10px;
     }
 
+
+    /* MOBILE MENU */
+
     .mobile-menu {
-        padding-left: 18px;
-        padding-right: 18px;
+        padding-left: 17px;
+        padding-right: 17px;
     }
 
     .mobile-nav {
-        margin-top: 11vh;
+        margin-top: 8vh;
     }
 
     .mobile-nav a {
-        min-height: 82px;
+        min-height: 70px;
     }
 
     .mobile-nav strong {
-        font-size: clamp(38px, 12vw, 54px);
+        font-size: clamp(32px,9vw,46px);
     }
 
-    /* -----------------------------------------------------
-       HERO
-    ----------------------------------------------------- */
+
+    /* HERO */
 
     .hero {
         min-height: 100svh;
@@ -2036,7 +1980,7 @@ footer {
 
         align-items: flex-end;
 
-        padding-bottom: 124px;
+        padding-bottom: 112px;
     }
 
     .hero-media img {
@@ -2047,25 +1991,26 @@ footer {
         background:
             linear-gradient(
                 180deg,
-                rgba(0, 0, 0, .25) 0%,
-                rgba(0, 0, 0, .15) 25%,
-                rgba(0, 0, 0, .70) 57%,
-                rgba(0, 0, 0, .98) 100%
+                rgba(0,0,0,.22) 0%,
+                rgba(0,0,0,.18) 25%,
+                rgba(0,0,0,.68) 55%,
+                rgba(0,0,0,.98) 100%
             );
     }
 
     .hero-content {
-        width: calc(100% - 36px);
+        width: calc(100% - 34px);
         margin: 0 auto;
     }
 
     .hero-kicker {
-        flex-wrap: wrap;
+        gap: 8px;
 
-        margin-bottom: 21px;
+        margin-bottom: 17px;
 
-        font-size: 7px;
-        letter-spacing: .13em;
+        font-size: 6.5px;
+
+        letter-spacing: .11em;
     }
 
     .hero-kicker i {
@@ -2075,24 +2020,22 @@ footer {
     .hero h1 {
         max-width: 100%;
 
-        font-size: clamp(64px, 21vw, 108px);
+        font-size: clamp(57px,18vw,88px);
 
-        line-height: .79;
+        line-height: .81;
 
         letter-spacing: -.095em;
     }
 
     .hero h1 strong {
-        margin-left: 25px;
+        margin-left: 19px;
     }
 
     .hero-description {
-        max-width: 420px;
+        margin-top: 22px;
 
-        margin-top: 27px;
-
-        font-size: 13px;
-        line-height: 1.55;
+        font-size: 12px;
+        line-height: 1.5;
     }
 
     .hero-actions {
@@ -2101,182 +2044,174 @@ footer {
         flex-direction: column;
         align-items: stretch;
 
-        gap: 8px;
+        gap: 7px;
 
-        margin-top: 25px;
+        margin-top: 21px;
     }
 
     .button {
         width: 100%;
-        min-height: 55px;
 
-        border-radius: 10px;
+        min-height: 49px;
+
+        border-radius: 9px;
+
+        font-size: 8px;
+    }
+
+    .button b {
+        font-size: 15px;
     }
 
     .hero-stats {
-        left: 18px;
-        right: 18px;
-        bottom: 20px;
+        left: 17px;
+        right: 17px;
+
+        bottom: 17px;
 
         gap: 0;
 
         justify-content: space-between;
     }
 
+    .hero-stat {
+        gap: 3px;
+    }
+
     .hero-stat strong {
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .hero-stat span {
-        font-size: 6px;
+        font-size: 5.5px;
     }
 
     .hero-scroll {
         display: none;
     }
 
-    /* -----------------------------------------------------
-       SECTIONS
-    ----------------------------------------------------- */
+
+    /* SECTIONS */
 
     .booking-section,
     .gallery-section {
-        width: calc(100% - 36px);
+        width: calc(100% - 34px);
     }
 
     .booking-section {
-        padding:
-            88px 0 95px;
+        padding: 72px 0 78px;
     }
 
     .section-heading {
         display: block;
 
-        margin-bottom: 38px;
+        margin-bottom: 30px;
+    }
+
+    .eyebrow {
+        margin-bottom: 14px;
+
+        font-size: 6.5px;
     }
 
     .section-heading h2,
     .field-content h2 {
-        font-size: clamp(47px, 15vw, 66px);
-        line-height: .90;
+        font-size: clamp(40px,12.5vw,57px);
+
+        line-height: .91;
     }
 
     .section-heading > p {
-        max-width: 330px;
+        max-width: 310px;
 
-        margin-top: 26px;
+        margin-top: 20px;
 
-        font-size: 12px;
+        font-size: 11px;
+
+        line-height: 1.65;
     }
 
-    .eyebrow {
-        margin-bottom: 17px;
-        font-size: 7px;
-    }
 
-    /* -----------------------------------------------------
-       DAYS — HORIZONTAL SCROLLER
-    ----------------------------------------------------- */
+    /* DAYS */
 
     .days-shell {
-        width: 100%;
-
         grid-template-columns:
-            34px
-            minmax(0, 1fr)
-            34px;
-
-        overflow: hidden;
+            31px
+            minmax(0,1fr)
+            31px;
     }
 
     .days {
-        width: 100%;
-        min-width: 0;
-
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-
-        align-items: stretch;
-
-        gap: 8px;
-
-        overflow-x: auto !important;
-        overflow-y: hidden;
+        gap: 6px;
 
         padding:
-            4px 3px 13px;
-
-        white-space: nowrap;
-
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-
-        -webkit-overflow-scrolling: touch;
-
-        overscroll-behavior-x: contain;
-    }
-
-    .days::-webkit-scrollbar {
-        display: none;
+            3px 2px 10px;
     }
 
     .days > .day {
-        flex: 0 0 76px !important;
+        flex: 0 0 70px !important;
 
-        width: 76px !important;
-        min-width: 76px !important;
-        max-width: 76px !important;
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
 
-        height: 86px;
-        min-height: 86px;
+        height: 78px;
+        min-height: 78px;
 
-        border-radius: 10px;
+        border-radius: 9px;
     }
 
     .day > span {
-        margin-top: 12px;
-        font-size: 6px;
+        margin-top: 10px;
+
+        font-size: 5.5px;
     }
 
     .day > strong {
-        margin-top: 7px;
-        font-size: 22px;
+        margin-top: 6px;
+
+        font-size: 20px;
     }
 
     .day > small {
-        margin-top: 6px;
-        font-size: 6px;
+        margin-top: 5px;
+
+        font-size: 5.5px;
     }
 
     .days-arrow {
-        width: 34px;
-        height: 86px;
+        width: 31px;
+        height: 78px;
 
-        font-size: 16px;
+        font-size: 14px;
     }
 
-    /* -----------------------------------------------------
-       BOOKING INFO
-    ----------------------------------------------------- */
+
+    /* BOOKING INFO */
 
     .booking-info {
         min-height: auto;
 
         flex-wrap: wrap;
 
-        gap: 9px 17px;
+        gap: 7px 14px;
 
-        padding: 12px 0;
+        padding: 10px 0;
 
-        font-size: 7px;
+        font-size: 6.5px;
+    }
+
+    .legend {
+        width: 6px;
+        height: 6px;
     }
 
     .selected-date {
         width: 100%;
 
         margin-left: 0;
-        padding-top: 4px;
+
+        padding-top: 2px;
 
         overflow: hidden;
 
@@ -2284,26 +2219,19 @@ footer {
         text-overflow: ellipsis;
     }
 
-    /* -----------------------------------------------------
-       SCHEDULE
-    ----------------------------------------------------- */
 
-    .schedule {
-        width: 100%;
-    }
+    /* SCHEDULE */
 
     .schedule-row {
-        width: 100%;
-
         min-height: 0;
 
         grid-template-columns:
-            72px
-            minmax(0, 1fr);
+            65px
+            minmax(0,1fr);
 
         gap: 8px;
 
-        padding: 18px 0;
+        padding: 15px 0;
     }
 
     .schedule-row:hover {
@@ -2311,19 +2239,15 @@ footer {
     }
 
     .schedule-time {
-        font-size: 17px;
+        font-size: 15px;
     }
 
     .schedule-time span {
         display: block;
 
-        margin-top: 3px;
+        margin-top: 2px;
 
-        font-size: 11px;
-    }
-
-    .schedule-line {
-        display: none;
+        font-size: 9px;
     }
 
     .schedule-status {
@@ -2333,34 +2257,38 @@ footer {
 
         flex-wrap: wrap;
 
-        gap: 8px;
+        gap: 6px;
 
         min-width: 0;
     }
 
     .status-text {
-        font-size: 7px;
+        font-size: 6.5px;
+    }
+
+    .status-text::before {
+        width: 6px;
+        height: 6px;
     }
 
     .booking-phone {
         min-width: 0;
 
-        height: 36px;
+        height: 32px;
 
-        padding: 0 10px;
+        padding: 0 9px;
 
-        border-radius: 8px;
+        border-radius: 7px;
 
-        font-size: 7px;
+        font-size: 6.5px;
     }
 
     .booking-phone span {
-        font-size: 7px;
+        font-size: 6.5px;
     }
 
-    /* -----------------------------------------------------
-       FIELD
-    ----------------------------------------------------- */
+
+    /* FIELD */
 
     .field-section {
         display: flex;
@@ -2369,66 +2297,85 @@ footer {
 
     .field-image {
         width: 100%;
-        min-height: 390px;
+        min-height: 330px;
+        height: 330px;
     }
 
     .field-number {
-        left: 19px;
-        bottom: 21px;
+        left: 17px;
+        bottom: 18px;
 
-        font-size: 60px;
+        font-size: 54px;
     }
 
     .field-image-label {
-        right: 19px;
-        bottom: 24px;
+        right: 17px;
+        bottom: 20px;
 
-        font-size: 6px;
+        font-size: 5.5px;
     }
 
     .field-content {
         width: 100%;
 
         padding:
-            70px 18px 78px;
+            58px 17px 64px;
     }
 
     .field-content > p {
-        margin-top: 24px;
+        margin-top: 20px;
 
-        font-size: 12px;
+        font-size: 11px;
+        line-height: 1.7;
     }
 
     .field-features {
-        margin-top: 34px;
-    }
-
-    .feature {
-        padding: 15px 0;
-    }
-
-    .feature b {
-        font-size: 8px;
-    }
-
-    .feature span {
-        font-size: 8px;
-    }
-
-    .text-link {
         margin-top: 28px;
     }
 
-    /* -----------------------------------------------------
-       GALLERY
-    ----------------------------------------------------- */
+    .feature {
+        grid-template-columns:
+            34px
+            minmax(0,1fr);
+
+        gap: 8px;
+
+        padding: 13px 0;
+    }
+
+    .feature > strong {
+        font-size: 7px;
+    }
+
+    .feature b {
+        font-size: 7px;
+    }
+
+    .feature span {
+        margin-top: 4px;
+
+        font-size: 7px;
+    }
+
+    .text-link {
+        margin-top: 24px;
+
+        font-size: 7px;
+    }
+
+    .text-link b {
+        font-size: 16px;
+    }
+
+
+    /* GALLERY */
 
     .gallery-section {
-        padding: 92px 0;
+        padding: 76px 0;
     }
 
     .gallery-heading {
-        margin-bottom: 35px;
+        margin-bottom: 28px;
     }
 
     .gallery {
@@ -2437,83 +2384,85 @@ footer {
 
         height: auto;
 
-        gap: 9px;
+        gap: 7px;
     }
 
     .gallery-main,
     .gallery-side {
         width: 100%;
-        height: 350px;
+        height: 285px;
     }
 
     .gallery-main {
-        height: 420px;
+        height: 335px;
     }
 
     .gallery span {
-        left: 17px;
-        bottom: 17px;
+        left: 14px;
+        bottom: 14px;
+
+        font-size: 6.5px;
     }
 
-    /* -----------------------------------------------------
-       CTA
-    ----------------------------------------------------- */
+
+    /* CTA */
 
     .final-cta {
-        min-height: 610px;
+        min-height: 520px;
 
         align-items: flex-end;
 
-        padding-bottom: 70px;
+        padding-bottom: 52px;
     }
 
     .cta-overlay {
         background:
             linear-gradient(
                 180deg,
-                rgba(0, 0, 0, .15),
-                rgba(0, 0, 0, .88) 68%,
-                rgba(0, 0, 0, .98)
+                rgba(0,0,0,.16),
+                rgba(0,0,0,.88) 65%,
+                rgba(0,0,0,.98)
             );
     }
 
     .cta-content {
-        width: calc(100% - 36px);
+        width: calc(100% - 34px);
     }
 
     .cta-content h2 {
-        font-size: clamp(54px, 17vw, 78px);
-        line-height: .88;
+        font-size: clamp(45px,14vw,65px);
+
+        line-height: .89;
     }
 
     .cta-content .button {
-        margin-top: 28px;
+        margin-top: 23px;
     }
 
-    /* -----------------------------------------------------
-       FOOTER
-    ----------------------------------------------------- */
+
+    /* FOOTER */
 
     footer {
         padding:
-            60px 18px 25px;
+            52px 17px 22px;
     }
 
     .footer-top {
         flex-direction: column;
 
-        gap: 48px;
+        gap: 38px;
 
-        padding-bottom: 44px;
+        padding-bottom: 38px;
     }
 
     .footer-brand img {
-        width: 105px;
+        width: 98px;
     }
 
     .footer-brand p {
-        margin-top: 16px;
-        font-size: 10px;
+        margin-top: 13px;
+
+        font-size: 9px;
     }
 
     .footer-links {
@@ -2523,61 +2472,80 @@ footer {
             1fr
             1fr;
 
-        gap: 30px;
+        gap: 25px;
+    }
+
+    .footer-links span {
+        font-size: 6px;
     }
 
     .footer-links a {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .footer-bottom {
         align-items: flex-start;
 
-        gap: 16px;
+        gap: 13px;
+
+        padding-top: 20px;
 
         line-height: 1.5;
     }
 
     .footer-bottom-right {
-        gap: 15px;
+        gap: 13px;
     }
 
     .admin-link {
-        font-size: 7px;
+        font-size: 6px;
     }
 
-    /* -----------------------------------------------------
-       MODAL
-    ----------------------------------------------------- */
+
+    /* MODAL */
 
     .modal {
-        padding: 10px;
+        padding: 9px;
     }
 
     .modal-card {
         width: 100%;
 
         padding:
-            34px 18px 23px;
+            30px 17px 21px;
 
-        border-radius: 15px;
+        border-radius: 14px;
     }
 
     .modal-card h3 {
-        margin-top: 17px;
+        margin-top: 15px;
 
-        font-size: 34px;
+        font-size: 31px;
     }
 
     .modal-date {
-        font-size: 10px;
+        font-size: 9px;
+    }
+
+    #bookingForm {
+        margin-top: 24px;
+    }
+
+    #bookingForm label {
+        margin-bottom: 13px;
+
+        font-size: 7px;
     }
 
     #bookingForm input {
-        height: 53px;
-        font-size: 14px;
+        height: 49px;
+
+        margin-top: 6px;
+
+        font-size: 13px;
     }
 }
+
 
 /* =========================================================
    SMALL PHONES
@@ -2586,19 +2554,27 @@ footer {
 @media (max-width: 390px) {
 
     .hero {
-        padding-bottom: 112px;
+        padding-bottom: 105px;
     }
 
     .hero h1 {
-        font-size: 65px;
+        font-size: 58px;
     }
 
     .hero-description {
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+    .hero-actions {
+        margin-top: 18px;
+    }
+
+    .button {
+        min-height: 47px;
     }
 
     .hero-stat strong {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .hero-stat span {
@@ -2607,45 +2583,46 @@ footer {
 
     .section-heading h2,
     .field-content h2 {
-        font-size: 45px;
+        font-size: 40px;
     }
-
-    /* još malo kompaktniji datumi */
 
     .days-shell {
         grid-template-columns:
-            30px
-            minmax(0, 1fr)
-            30px;
+            28px
+            minmax(0,1fr)
+            28px;
     }
 
     .days {
-        gap: 7px;
+        gap: 5px;
     }
 
     .days > .day {
-        flex-basis: 70px !important;
+        flex-basis: 66px !important;
 
-        width: 70px !important;
-        min-width: 70px !important;
-        max-width: 70px !important;
+        width: 66px !important;
+        min-width: 66px !important;
+        max-width: 66px !important;
+
+        height: 76px;
+        min-height: 76px;
     }
 
     .days-arrow {
-        width: 30px;
-        height: 86px;
+        width: 28px;
+        height: 76px;
     }
 
     .gallery-main {
-        height: 365px;
+        height: 315px;
     }
 
     .gallery-side {
-        height: 295px;
+        height: 260px;
     }
 
     .cta-content h2 {
-        font-size: 55px;
+        font-size: 50px;
     }
 
     .footer-bottom {
@@ -2658,6 +2635,7 @@ footer {
         justify-content: space-between;
     }
 }
+
 
 /* =========================================================
    REDUCED MOTION
@@ -2669,11 +2647,8 @@ footer {
     *::before,
     *::after {
         scroll-behavior: auto !important;
-
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-
         transition-duration: .01ms !important;
     }
 }
-

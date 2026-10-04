@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kockica | Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- ZAŠTITA ADMIN STRANICE -->
+    <script>
+        if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <header class="admin-navbar">
+
+        <a href="index.html" class="admin-logo">
+            <img
+                src="images/logo.png"
+                alt="Kockica"
+            >
+        </a>
+
+
+        <div style="display: flex; align-items: center; gap: 15px;">
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ← JAVNA STRANICA
+            </a>
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="odjaviAdmina()"
+            >
+                ODJAVI SE
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="admin-main">
+
+
+        <!-- NASLOV -->
+
+        <section class="admin-intro">
+
+            <p class="admin-eyebrow">
+                KOCKICA FUTBAL / ADMIN
+            </p>
+
+            <h1>
+                Upravljanje
+                <span>terminima.</span>
+            </h1>
+
+            <p>
+                Ovdje možeš dodavati, uređivati
+                i brisati zauzete termine.
+            </p>
+
+        </section>
+
+
+        <!-- DODAVANJE -->
+
+        <section class="admin-grid">
+
+
+            <div class="admin-card form-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <span class="card-number">
+                            01
+                        </span>
+
+                        <h2>
+                            Dodaj termin
+                        </h2>
+                    </div>
+
+                    <span class="card-label">
+                        NOVI TERMIN
+                    </span>
+
+                </div>
+
+
+                <form id="termin-form">
+
+
+                    <div class="input-group">
+
+                        <label for="datum">
+                            DATUM
+                        </label>
+
+                        <input
+                            type="text"
+                            id="datum"
+                            placeholder="01.10.2026."
+                            inputmode="numeric"
+                            maxlength="10"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="time-row">
+
+
+                        <div class="input-group">
+
+                            <label for="vrijeme-od">
+                                OD
+                            </label>
+
+                            <input
+                                type="text"
+                                id="vrijeme-od"
+                                placeholder="18:30"
+                                inputmode="numeric"
+                                maxlength="5"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="vrijeme-do">
+                                DO
+                            </label>
+
+                            <input
+                                type="text"
+                                id="vrijeme-do"
+                                placeholder="19:45"
+                                inputmode="numeric"
+                                maxlength="5"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="admin-submit"
+                        id="submit-dugme"
+                    >
+                        DODAJ TERMIN
+                        <span>→</span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="admin-cancel"
+                        id="otkazi-edit"
+                        hidden
+                    >
+                        ODUSTANI
+                    </button>
+
+
+                    <input
+                        type="hidden"
+                        id="edit-id"
+                    >
+
+                </form>
+
+            </div>
+
+
+            <!-- INFORMACIJE -->
+
+            <div class="admin-card info-card-admin">
+
+                <span class="card-number">
+                    02
+                </span>
+
+                <h2>
+                    Raspored
+                </h2>
+
+                <p>
+                    Uneseni termini će se prikazivati
+                    na javnoj stranici kao zauzeti.
+                </p>
+
+
+                <div class="status-explanation">
+
+                    <div>
+                        <i class="green-dot"></i>
+
+                        <span>
+                            Slobodan termin
+                        </span>
+                    </div>
+
+
+                    <div>
+                        <i class="red-dot"></i>
+
+                        <span>
+                            Zauzet termin
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- POSTOJEĆI TERMINI -->
+
+        <section class="existing-section">
+
+            <div class="existing-header">
+
+                <div>
+
+                    <p class="admin-eyebrow">
+                        RASPORED
+                    </p>
+
+                    <h2>
+                        Postojeći termini
+                    </h2>
+
+                </div>
+
+                <span class="existing-count">
+                    TERMINI
+                </span>
+
+            </div>
+
+
+            <div
+                id="admin-termini"
+                class="admin-termini"
+            >
+
+                <div class="empty-message">
+
+                    <span>—</span>
+
+                    <p>
+                        Nema unesenih termina.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="admin-footer">
+
+        <span>
+            KOCKICA FUTBAL
+        </span>
+
+        <span>
+            ADMIN PANEL
+        </span>
+
+    </footer>
+
+
+    <script>
+
+        function odjaviAdmina() {
+
+            sessionStorage.removeItem("adminLoggedIn");
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>

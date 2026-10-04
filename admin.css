@@ -1,0 +1,806 @@
+/* =========================================
+   KOCKICA FUTBAL
+   ADMIN PANEL
+========================================= */
+
+:root {
+    --black: #080808;
+    --dark: #111111;
+    --dark-2: #181818;
+
+    --yellow: #ffd400;
+    --yellow-dark: #e4bd00;
+
+    --white: #ffffff;
+    --gray: #999999;
+
+    --border: rgba(255, 255, 255, 0.1);
+
+    --green: #31a85b;
+    --red: #d64040;
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+button,
+input {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.admin-navbar {
+    height: 90px;
+
+    padding: 0 6vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(8, 8, 8, 0.95);
+}
+
+
+.admin-logo {
+    width: 145px;
+}
+
+
+.admin-logo img {
+    width: 100%;
+}
+
+
+.back-button {
+    padding: 13px 18px;
+
+    border: 1px solid var(--border);
+
+    color: #aaa;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    transition: 0.25s ease;
+}
+
+
+.back-button:hover {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    border-color: var(--yellow);
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.admin-main {
+    width: min(1200px, 88%);
+
+    margin: auto;
+
+    padding: 100px 0;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.admin-intro {
+    max-width: 850px;
+
+    margin-bottom: 75px;
+}
+
+
+.admin-eyebrow {
+    margin-bottom: 18px;
+
+    color: var(--yellow);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+}
+
+
+.admin-intro h1 {
+    font-size: clamp(50px, 7vw, 95px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+
+    text-transform: uppercase;
+}
+
+
+.admin-intro h1 span {
+    color: var(--yellow);
+}
+
+
+.admin-intro > p:last-child {
+    max-width: 550px;
+
+    margin-top: 30px;
+
+    color: var(--gray);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.admin-grid {
+    display: grid;
+
+    grid-template-columns: 1.4fr 0.6fr;
+
+    gap: 12px;
+
+    margin-bottom: 90px;
+}
+
+
+.admin-card {
+    padding: 40px;
+
+    background: var(--dark);
+
+    border: 1px solid var(--border);
+}
+
+
+.card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 45px;
+}
+
+
+.card-number {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--yellow);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.admin-card h2 {
+    font-size: 30px;
+
+    text-transform: uppercase;
+
+    letter-spacing: -1px;
+}
+
+
+.card-label {
+    padding: 8px 11px;
+
+    background: var(--yellow);
+
+    color: var(--black);
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-bottom: 25px;
+}
+
+
+.input-group label {
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.input-group input {
+    width: 100%;
+
+    height: 58px;
+
+    padding: 0 18px;
+
+    border: 1px solid #303030;
+
+    outline: none;
+
+    background: #0b0b0b;
+
+    color: var(--white);
+
+    font-size: 16px;
+
+    transition: 0.25s ease;
+}
+
+
+.input-group input:focus {
+    border-color: var(--yellow);
+}
+
+
+.time-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+.admin-submit {
+    width: 100%;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    border: none;
+
+    background: var(--yellow);
+
+    color: var(--black);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    transition: 0.25s ease;
+}
+
+
+.admin-submit span {
+    font-size: 22px;
+
+    transition: 0.25s ease;
+}
+
+
+.admin-submit:hover {
+    background: var(--white);
+}
+
+
+.admin-submit:hover span {
+    transform: translateX(7px);
+}
+
+
+.admin-cancel {
+    width: 100%;
+
+    margin-top: 10px;
+
+    height: 50px;
+
+    border: 1px solid #333;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.admin-cancel:hover {
+    border-color: var(--white);
+
+    color: var(--white);
+}
+
+
+/* =========================================
+   INFO CARD
+========================================= */
+
+.info-card-admin {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.info-card-admin .card-number {
+    color: var(--black);
+
+    opacity: 0.5;
+}
+
+
+.info-card-admin h2 {
+    margin-bottom: 20px;
+}
+
+
+.info-card-admin > p {
+    max-width: 270px;
+
+    color: rgba(0, 0, 0, 0.65);
+
+    line-height: 1.7;
+}
+
+
+.status-explanation {
+    margin-top: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.status-explanation div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+.green-dot,
+.red-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+}
+
+
+.green-dot {
+    background: var(--green);
+}
+
+
+.red-dot {
+    background: var(--red);
+}
+
+
+/* =========================================
+   EXISTING TERMS
+========================================= */
+
+.existing-section {
+    border-top: 1px solid var(--border);
+}
+
+
+.existing-header {
+    padding: 45px 0;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+}
+
+
+.existing-header h2 {
+    font-size: clamp(35px, 5vw, 60px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    text-transform: uppercase;
+}
+
+
+.existing-count {
+    color: #555;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   TERMINI
+========================================= */
+
+.admin-termini {
+    border-top: 1px solid var(--border);
+}
+
+
+.admin-termin {
+    min-height: 90px;
+
+    padding: 20px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    transition: 0.2s ease;
+}
+
+
+.admin-termin:hover {
+    padding-left: 12px;
+
+    border-color: rgba(255, 212, 0, 0.3);
+}
+
+
+.admin-termin-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+.admin-termin-date {
+    min-width: 130px;
+
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.admin-termin-time {
+    font-size: 22px;
+
+    font-weight: 800;
+}
+
+
+.admin-termin-actions {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.admin-termin-actions button {
+    height: 38px;
+
+    padding: 0 15px;
+
+    border: none;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s ease;
+}
+
+
+.edit-button {
+    background: var(--yellow);
+
+    color: var(--black);
+}
+
+
+.edit-button:hover {
+    background: var(--white);
+}
+
+
+.delete-button {
+    background: #222;
+
+    color: #e96b6b;
+}
+
+
+.delete-button:hover {
+    background: #333;
+}
+
+
+.empty-message {
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #555;
+
+    text-align: center;
+}
+
+
+.empty-message span {
+    color: var(--yellow);
+
+    font-size: 25px;
+}
+
+
+.empty-message p {
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.admin-footer {
+    min-height: 100px;
+
+    padding: 0 6vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid var(--border);
+
+    color: #555;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .admin-navbar {
+        height: 75px;
+
+        padding: 0 20px;
+    }
+
+
+    .admin-logo {
+        width: 120px;
+    }
+
+
+    .back-button {
+        padding: 10px;
+
+        font-size: 8px;
+    }
+
+
+    .admin-main {
+        width: 90%;
+
+        padding: 70px 0;
+    }
+
+
+    .admin-intro {
+        margin-bottom: 50px;
+    }
+
+
+    .admin-intro h1 {
+        font-size: 55px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .admin-card {
+        padding: 25px;
+    }
+
+
+    .time-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .existing-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .admin-termin {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .admin-termin-info {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .admin-termin-actions {
+        width: 100%;
+    }
+
+
+    .admin-termin-actions button {
+        flex: 1;
+    }
+
+
+    .admin-footer {
+        padding: 25px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+}
+
+/* =========================================
+   ADMIN TERMIN - DODATNO
+========================================= */
+
+.admin-termin-info {
+    min-width: 0;
+}
+
+.admin-termin-date {
+    white-space: nowrap;
+}
+
+.admin-termin-time {
+    white-space: nowrap;
+}
+
+
+@media (max-width: 800px) {
+
+    .admin-termin-date {
+        min-width: 0;
+    }
+
+    .admin-termin-time {
+        font-size: 20px;
+    }
+
+}

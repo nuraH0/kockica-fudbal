@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin prijava — Kockica Football</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>ADMIN PRIJAVA</h1>
+
+            <p>Prijavi se za upravljanje terminima.</p>
+
+            <form id="login-form">
+
+                <label for="username">
+                    Korisničko ime
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Unesi korisničko ime"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">
+                    Šifra
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Unesi šifru"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <p
+                    id="login-error"
+                    style="display: none;"
+                >
+                    Pogrešno korisničko ime ili šifra.
+                </p>
+
+                <button type="submit">
+                    PRIJAVI SE →
+                </button>
+
+            </form>
+
+            <a href="index.html">
+                ← Nazad na stranicu
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+
+</body>
+</html>

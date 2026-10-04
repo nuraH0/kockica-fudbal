@@ -27,58 +27,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navbar = document.querySelector(".navbar");
 
-    let posljednjiScroll = window.scrollY;
-    let scrollTick = false;
+let lastScrollY = window.scrollY;
 
-    function azurirajNavbar() {
+window.addEventListener(
+    "scroll",
+    () => {
+        const currentScrollY = window.scrollY;
 
-        if (!navbar) {
-            return;
-        }
-
-        const trenutno = window.scrollY;
-
-        /*
-            Na samom vrhu uvijek vraćamo originalnu veličinu.
-        */
-
-        if (trenutno <= 20) {
+        // Na samom vrhu
+        if (currentScrollY <= 20) {
             navbar.classList.remove("navbar-compact");
             navbar.classList.remove("navbar-scrolled");
 
-            posljednjiScroll = trenutno;
-            scrollTick = false;
-
+            lastScrollY = currentScrollY;
             return;
         }
 
-        /*
-            Dodajemo klasu kada korisnik nije više na vrhu.
-        */
-
+        // Skrolovano
         navbar.classList.add("navbar-scrolled");
 
-        /*
-            Scroll prema dole:
-            navbar se smanjuje.
-        */
-
-        if (trenutno > posljednjiScroll + 3) {
+        // Ideš prema dole
+        if (currentScrollY > lastScrollY + 4) {
             navbar.classList.add("navbar-compact");
         }
 
-        /*
-            Scroll prema gore:
-            navbar se vraća u originalnu veličinu.
-        */
-
-        else if (trenutno < posljednjiScroll - 3) {
+        // Ideš prema gore
+        if (currentScrollY < lastScrollY - 4) {
             navbar.classList.remove("navbar-compact");
         }
 
-        posljednjiScroll = trenutno;
-        scrollTick = false;
-    }
+        lastScrollY = currentScrollY;
+    },
+    { passive: true }
+);
 
 
     window.addEventListener(

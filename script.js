@@ -11,9 +11,9 @@ import {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // =========================================================
-    // FIREBASE
-    // =========================================================
+    /* =========================================================
+       FIREBASE
+    ========================================================= */
 
     const terminiRef = ref(db, "termini");
 
@@ -21,12 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let odabraniDatum = null;
 
 
-    // =========================================================
-    // POMOĆNE FUNKCIJE
-    // =========================================================
+    /* =========================================================
+       POMOĆNE FUNKCIJE
+    ========================================================= */
 
     function vrijemeUMinutama(vrijeme) {
+        if (!vrijeme || !vrijeme.includes(":")) {
+            return NaN;
+        }
+
         const [sati, minute] = vrijeme.split(":").map(Number);
+
         return sati * 60 + minute;
     }
 
@@ -37,15 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * 01.10.2026.
-     *      ↓
-     * 2026-10-01
-     */
+        01.10.2026.
+        ↓
+        2026-10-01
+    */
 
     function datumZaFirebase(datum) {
-        if (!datum) return null;
 
-        const cisto = datum.trim().replace(/\.$/, "");
+        if (!datum) {
+            return null;
+        }
+
+        const cisto = datum
+            .trim()
+            .replace(/\.$/, "");
+
         const dijelovi = cisto.split(".");
 
         if (dijelovi.length !== 3) {
@@ -83,13 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * 2026-10-01
-     *      ↓
-     * 01.10.2026.
-     */
+        2026-10-01
+        ↓
+        01.10.2026.
+    */
 
     function formatDatumZaPrikaz(datum) {
-        if (!datum) return "";
+
+        if (!datum) {
+            return "";
+        }
 
         const dijelovi = datum.split("-");
 
@@ -106,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function formatFirebaseDate(date) {
+
         const godina = date.getFullYear();
 
         const mjesec = String(
@@ -121,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function danNedelje(date) {
+
         const dani = [
             "NED",
             "PON",
@@ -136,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function mjesecNaziv(date) {
+
         const mjeseci = [
             "JAN",
             "FEB",
@@ -155,51 +172,136 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =========================================================
-    // SMOOTH SCROLL
-    // =========================================================
+    function escapeHtml(value) {
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
-        link.addEventListener("click", event => {
 
-            const targetId = link.getAttribute("href");
+    /* =========================================================
+       MOBILNI MENI
+    ========================================================= */
 
-            if (!targetId || targetId === "#") {
-                return;
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mobileMenu =
+        document.querySelector(".mobile-menu");
+
+    const mobileClose =
+        document.querySelector(".mobile-close");
+
+
+    function zatvoriMobilniMeni() {
+
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
+
+        document.body.classList.remove("menu-open");
+    }
+
+
+    function otvoriMobilniMeni() {
+
+        document.body.classList.add("menu-open");
+    }
+
+
+    if (menuToggle) {
+
+        menuToggle.addEventListener(
+            "change",
+            () => {
+
+                if (menuToggle.checked) {
+                    otvoriMobilniMeni();
+                } else {
+                    zatvoriMobilniMeni();
+                }
+
             }
+        );
+    }
 
-            const target = document.querySelector(targetId);
 
-            if (!target) {
-                return;
-            }
+    if (mobileClose) {
 
-            event.preventDefault();
+        mobileClose.addEventListener(
+            "click",
+            zatvoriMobilniMeni
+        );
+    }
 
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+
+    if (mobileMenu) {
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+                        zatvoriMobilniMeni();
+                    }
+                );
+
             });
+    }
 
 
-            // Zatvori mobilni meni
+    /* =========================================================
+       SMOOTH SCROLL
+    ========================================================= */
 
-            const menuToggle =
-                document.getElementById("menuToggle");
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
 
-            if (menuToggle) {
-                menuToggle.checked = false;
-            }
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute("href");
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+                        return;
+                    }
+
+                    const target =
+                        document.querySelector(targetId);
+
+                    if (!target) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                    zatvoriMobilniMeni();
+                }
+            );
 
         });
 
-    });
 
-
-    // =========================================================
-    // ADMIN FORMA
-    // =========================================================
+    /* =========================================================
+       ADMIN FORMA
+    ========================================================= */
 
     const terminForm =
         document.getElementById("termin-form");
@@ -214,6 +316,30 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("otkazi-edit");
 
 
+    function resetAdminForm() {
+
+        if (!terminForm) {
+            return;
+        }
+
+        terminForm.reset();
+
+        if (editIdInput) {
+            editIdInput.value = "";
+        }
+
+        if (submitButton) {
+
+            submitButton.innerHTML =
+                `DODAJ TERMIN <span>→</span>`;
+        }
+
+        if (cancelEdit) {
+            cancelEdit.hidden = true;
+        }
+    }
+
+
     if (terminForm) {
 
         terminForm.addEventListener(
@@ -221,7 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
             async event => {
 
                 event.preventDefault();
-
 
                 const datumInput =
                     document.getElementById("datum");
@@ -231,6 +356,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const vrijemeDoInput =
                     document.getElementById("vrijeme-do");
+
+
+                if (
+                    !datumInput ||
+                    !vrijemeOdInput ||
+                    !vrijemeDoInput
+                ) {
+                    return;
+                }
 
 
                 const datumUnos =
@@ -243,16 +377,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     vrijemeDoInput.value.trim();
 
                 const editId =
-                    editIdInput.value;
+                    editIdInput
+                        ? editIdInput.value
+                        : "";
 
 
-                // =================================================
-                // DATUM
-                // =================================================
+                /* DATUM */
 
                 const datum =
                     datumZaFirebase(datumUnos);
-
 
                 if (!datum) {
 
@@ -264,9 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // VRIJEME OD
-                // =================================================
+                /* VRIJEME OD */
 
                 if (!vrijemeJeIspravno(vrijemeOd)) {
 
@@ -278,9 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // VRIJEME DO
-                // =================================================
+                /* VRIJEME DO */
 
                 if (!vrijemeJeIspravno(vrijemeDo)) {
 
@@ -292,14 +421,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // OD < DO
-                // =================================================
+                /* OD < DO */
 
-                if (
-                    vrijemeUMinutama(vrijemeOd) >=
-                    vrijemeUMinutama(vrijemeDo)
-                ) {
+                const noviOd =
+                    vrijemeUMinutama(vrijemeOd);
+
+                const noviDo =
+                    vrijemeUMinutama(vrijemeDo);
+
+
+                if (noviOd >= noviDo) {
 
                     alert(
                         "Vrijeme završetka mora biti nakon početka."
@@ -309,57 +440,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // PROVJERA PREKLAPANJA
-                // =================================================
-
-                const noviOd =
-                    vrijemeUMinutama(vrijemeOd);
-
-                const noviDo =
-                    vrijemeUMinutama(vrijemeDo);
-
+                /* PREKLAPANJE */
 
                 const preklapanje =
-                    Object.entries(sviTermini).some(
-                        ([id, termin]) => {
+                    Object.entries(sviTermini)
+                        .some(
+                            ([id, termin]) => {
 
-                            // Kod uređivanja ignorišemo
-                            // trenutni termin
+                                if (
+                                    editId &&
+                                    id === editId
+                                ) {
+                                    return false;
+                                }
 
-                            if (
-                                editId &&
-                                id === editId
-                            ) {
-                                return false;
-                            }
+                                if (
+                                    termin.datum !== datum
+                                ) {
+                                    return false;
+                                }
 
+                                const postojeciOd =
+                                    vrijemeUMinutama(
+                                        termin.vrijemeOd
+                                    );
 
-                            if (
-                                termin.datum !== datum
-                            ) {
-                                return false;
-                            }
+                                const postojeciDo =
+                                    vrijemeUMinutama(
+                                        termin.vrijemeDo
+                                    );
 
-
-                            const postojeciOd =
-                                vrijemeUMinutama(
-                                    termin.vrijemeOd
+                                return (
+                                    noviOd < postojeciDo &&
+                                    noviDo > postojeciOd
                                 );
-
-                            const postojeciDo =
-                                vrijemeUMinutama(
-                                    termin.vrijemeDo
-                                );
-
-
-                            return (
-                                noviOd < postojeciDo &&
-                                noviDo > postojeciOd
-                            );
-
-                        }
-                    );
+                            }
+                        );
 
 
                 if (preklapanje) {
@@ -372,9 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // SPREMANJE
-                // =================================================
+                /* SPREMANJE */
 
                 try {
 
@@ -392,7 +506,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         );
 
-
                         alert(
                             "Termin je uspješno izmijenjen."
                         );
@@ -408,28 +521,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         );
 
-
                         alert(
                             "Termin je uspješno dodan."
                         );
-
                     }
 
 
-                    // =================================================
-                    // RESET FORME
-                    // =================================================
-
-                    terminForm.reset();
-
-                    editIdInput.value = "";
-
-                    submitButton.innerHTML =
-                        `DODAJ TERMIN <span>→</span>`;
-
-                    if (cancelEdit) {
-                        cancelEdit.hidden = true;
-                    }
+                    resetAdminForm();
 
                 } catch (error) {
 
@@ -441,43 +539,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert(
                         "Greška prilikom spremanja termina."
                     );
-
                 }
 
             }
         );
 
 
-        // =================================================
-        // ODUSTANI OD UREĐIVANJA
-        // =================================================
+        /* ODUSTANI */
 
         if (cancelEdit) {
 
             cancelEdit.addEventListener(
                 "click",
-                () => {
-
-                    terminForm.reset();
-
-                    editIdInput.value = "";
-
-                    submitButton.innerHTML =
-                        `DODAJ TERMIN <span>→</span>`;
-
-                    cancelEdit.hidden = true;
-
-                }
+                resetAdminForm
             );
-
         }
-
     }
 
 
-    // =========================================================
-    // ADMIN — POSTOJEĆI TERMINI
-    // =========================================================
+    /* =========================================================
+       ADMIN — POSTOJEĆI TERMINI
+    ========================================================= */
 
     const adminTermini =
         document.getElementById("admin-termini");
@@ -492,28 +574,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 sviTermini =
                     snapshot.val() || {};
 
-
                 adminTermini.innerHTML = "";
 
 
                 const termini =
                     Object.entries(sviTermini)
-                        .sort((a, b) => {
+                        .sort(
+                            (a, b) => {
 
-                            const A =
-                                `${a[1].datum} ${a[1].vrijemeOd}`;
+                                const A =
+                                    `${a[1].datum} ${a[1].vrijemeOd}`;
 
-                            const B =
-                                `${b[1].datum} ${b[1].vrijemeOd}`;
+                                const B =
+                                    `${b[1].datum} ${b[1].vrijemeOd}`;
 
-                            return A.localeCompare(B);
+                                return A.localeCompare(B);
+                            }
+                        );
 
-                        });
 
-
-                // =================================================
-                // NEMA TERMINA
-                // =================================================
+                /* NEMA TERMINA */
 
                 if (termini.length === 0) {
 
@@ -530,9 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =================================================
-                // PRIKAZ TERMINA
-                // =================================================
+                /* PRIKAZ */
 
                 termini.forEach(
                     ([id, termin]) => {
@@ -548,35 +626,39 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="admin-termin-info">
 
                                 <div class="admin-termin-date">
-                                    ${formatDatumZaPrikaz(
-                                        termin.datum
+                                    ${escapeHtml(
+                                        formatDatumZaPrikaz(
+                                            termin.datum
+                                        )
                                     )}
                                 </div>
 
                                 <div class="admin-termin-time">
-                                    ${termin.vrijemeOd}
+                                    ${escapeHtml(
+                                        termin.vrijemeOd
+                                    )}
                                     —
-                                    ${termin.vrijemeDo}
+                                    ${escapeHtml(
+                                        termin.vrijemeDo
+                                    )}
                                 </div>
 
                             </div>
-
 
                             <div class="admin-termin-actions">
 
                                 <button
                                     type="button"
                                     class="edit-button"
-                                    data-id="${id}"
+                                    data-id="${escapeHtml(id)}"
                                 >
                                     UREDI
                                 </button>
 
-
                                 <button
                                     type="button"
                                     class="delete-button"
-                                    data-id="${id}"
+                                    data-id="${escapeHtml(id)}"
                                 >
                                     OBRIŠI
                                 </button>
@@ -584,16 +666,12 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         `;
 
-
                         adminTermini.appendChild(div);
-
                     }
                 );
 
 
-                // =================================================
-                // UREDI
-                // =================================================
+                /* UREDI */
 
                 adminTermini
                     .querySelectorAll(".edit-button")
@@ -609,37 +687,56 @@ document.addEventListener("DOMContentLoaded", () => {
                                 const termin =
                                     sviTermini[id];
 
-
                                 if (!termin) {
                                     return;
                                 }
 
 
-                                document
-                                    .getElementById("datum")
-                                    .value =
+                                const datumInput =
+                                    document.getElementById("datum");
+
+                                const vrijemeOdInput =
+                                    document.getElementById(
+                                        "vrijeme-od"
+                                    );
+
+                                const vrijemeDoInput =
+                                    document.getElementById(
+                                        "vrijeme-do"
+                                    );
+
+
+                                if (
+                                    !datumInput ||
+                                    !vrijemeOdInput ||
+                                    !vrijemeDoInput
+                                ) {
+                                    return;
+                                }
+
+
+                                datumInput.value =
                                     formatDatumZaPrikaz(
                                         termin.datum
                                     );
 
-
-                                document
-                                    .getElementById("vrijeme-od")
-                                    .value =
+                                vrijemeOdInput.value =
                                     termin.vrijemeOd;
 
-
-                                document
-                                    .getElementById("vrijeme-do")
-                                    .value =
+                                vrijemeDoInput.value =
                                     termin.vrijemeDo;
 
 
-                                editIdInput.value = id;
+                                if (editIdInput) {
+                                    editIdInput.value = id;
+                                }
 
 
-                                submitButton.innerHTML =
-                                    `SAČUVAJ IZMJENE <span>→</span>`;
+                                if (submitButton) {
+
+                                    submitButton.innerHTML =
+                                        `SAČUVAJ IZMJENE <span>→</span>`;
+                                }
 
 
                                 if (cancelEdit) {
@@ -651,16 +748,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                     top: 0,
                                     behavior: "smooth"
                                 });
-
                             }
                         );
 
                     });
 
 
-                // =================================================
-                // OBRIŠI
-                // =================================================
+                /* OBRIŠI */
 
                 adminTermini
                     .querySelectorAll(".delete-button")
@@ -672,7 +766,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                 const id =
                                     button.dataset.id;
-
 
                                 const potvrda =
                                     confirm(
@@ -704,7 +797,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     alert(
                                         "Greška prilikom brisanja termina."
                                     );
-
                                 }
 
                             }
@@ -714,17 +806,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
         );
-
     }
 
 
-    // =========================================================
-    // JAVNA STRANICA — RASPORED
-    // =========================================================
+    /* =========================================================
+       JAVNA STRANICA
+    ========================================================= */
 
     const schedule =
         document.querySelector(".schedule");
 
+
+    /*
+        Ako nismo na javnoj stranici,
+        završavamo ovdje.
+    */
 
     if (!schedule) {
         return;
@@ -740,52 +836,79 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextDay =
         document.querySelector(".next-day");
 
+    const selectedDateElement =
+        document.querySelector(".selected-date");
 
-    // =========================================================
-    // STRELICA LIJEVO
-    // =========================================================
 
-    if (prevDay && daysContainer) {
+    /* =========================================================
+       STRELICA LIJEVO
+    ========================================================= */
+
+    if (
+        prevDay &&
+        daysContainer
+    ) {
 
         prevDay.addEventListener(
             "click",
             () => {
 
                 daysContainer.scrollBy({
-                    left: -320,
+                    left: -300,
                     behavior: "smooth"
                 });
 
             }
         );
-
     }
 
 
-    // =========================================================
-    // STRELICA DESNO
-    // =========================================================
+    /* =========================================================
+       STRELICA DESNO
+    ========================================================= */
 
-    if (nextDay && daysContainer) {
+    if (
+        nextDay &&
+        daysContainer
+    ) {
 
         nextDay.addEventListener(
             "click",
             () => {
 
                 daysContainer.scrollBy({
-                    left: 320,
+                    left: 300,
                     behavior: "smooth"
                 });
 
             }
         );
-
     }
 
 
-    // =========================================================
-    // KREIRAJ 31 DAN
-    // =========================================================
+    /* =========================================================
+       AŽURIRAJ DATUM
+    ========================================================= */
+
+    function azurirajOdabraniDatum() {
+
+        if (
+            !selectedDateElement ||
+            !odabraniDatum
+        ) {
+            return;
+        }
+
+        selectedDateElement.textContent =
+            formatDatumZaPrikaz(
+                odabraniDatum
+            );
+    }
+
+
+    /* =========================================================
+       KREIRAJ 31 DAN
+    ========================================================= */
 
     function napraviDane() {
 
@@ -807,9 +930,11 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        // Narednih 31 dan
-
-        for (let i = 0; i < 31; i++) {
+        for (
+            let i = 0;
+            i < 31;
+            i++
+        ) {
 
             const date =
                 new Date(danas);
@@ -822,7 +947,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const button =
                 document.createElement("button");
 
-
             button.type = "button";
 
             button.className = "day";
@@ -832,15 +956,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 formatFirebaseDate(date);
 
 
-            // Danas je aktivan
-
             if (i === 0) {
 
                 button.classList.add("active");
 
                 odabraniDatum =
                     button.dataset.date;
-
             }
 
 
@@ -861,47 +982,47 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
 
-            // Klik na dan
-
             button.addEventListener(
                 "click",
                 () => {
 
-                    document
+                    daysContainer
                         .querySelectorAll(".day")
                         .forEach(day => {
-                            day.classList.remove("active");
+                            day.classList.remove(
+                                "active"
+                            );
                         });
 
 
-                    button.classList.add("active");
+                    button.classList.add(
+                        "active"
+                    );
 
 
                     odabraniDatum =
                         button.dataset.date;
 
 
+                    azurirajOdabraniDatum();
+
                     prikaziRaspored();
 
-
-                    // Centriraj odabrani dan
 
                     button.scrollIntoView({
                         behavior: "smooth",
                         block: "nearest",
                         inline: "center"
                     });
-
                 }
             );
 
 
-            daysContainer.appendChild(button);
-
+            daysContainer.appendChild(
+                button
+            );
         }
 
-
-        // Automatski centriraj danas
 
         const danasnjiDan =
             daysContainer.querySelector(
@@ -916,15 +1037,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 block: "nearest",
                 inline: "center"
             });
-
         }
 
+
+        azurirajOdabraniDatum();
     }
 
 
-    // =========================================================
-    // DA LI JE INTERVAL ZAUZET
-    // =========================================================
+    /* =========================================================
+       DA LI JE INTERVAL ZAUZET
+    ========================================================= */
 
     function intervalJeZauzet(
         pocetak,
@@ -940,52 +1062,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return Object.values(
             sviTermini
-        ).some(termin => {
+        ).some(
+            termin => {
 
-            if (
-                termin.datum !==
-                odabraniDatum
-            ) {
-                return false;
+                if (
+                    termin.datum !==
+                    odabraniDatum
+                ) {
+                    return false;
+                }
+
+
+                const terminOd =
+                    vrijemeUMinutama(
+                        termin.vrijemeOd
+                    );
+
+                const terminDo =
+                    vrijemeUMinutama(
+                        termin.vrijemeDo
+                    );
+
+
+                return (
+                    pocetakMin < terminDo &&
+                    krajMin > terminOd
+                );
             }
-
-
-            const terminOd =
-                vrijemeUMinutama(
-                    termin.vrijemeOd
-                );
-
-
-            const terminDo =
-                vrijemeUMinutama(
-                    termin.vrijemeDo
-                );
-
-
-            return (
-                pocetakMin < terminDo &&
-                krajMin > terminOd
-            );
-
-        });
-
+        );
     }
 
 
-    // =========================================================
-    // JAVNI RASPORED
-    // =========================================================
+    /* =========================================================
+       JAVNI RASPORED
+    ========================================================= */
 
     function prikaziRaspored() {
+
+        if (!schedule) {
+            return;
+        }
+
 
         schedule.innerHTML = "";
 
 
         /*
-         * RADNO VRIJEME
-         *
-         * 07:00 - 23:00
-         */
+            RADNO VRIJEME
+
+            07:00 - 23:00
+        */
 
         const pocetakDana =
             7 * 60;
@@ -995,8 +1121,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /*
-         * Svakih 30 minuta.
-         */
+            Svakih 30 minuta.
+        */
 
         for (
             let minuta = pocetakDana;
@@ -1008,7 +1134,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.floor(
                     minuta / 60
                 );
-
 
             const min =
                 minuta % 60;
@@ -1023,14 +1148,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     sljedecih30 / 60
                 );
 
-
             const sljedeciMin =
                 sljedecih30 % 60;
 
 
             const od =
                 `${String(sat).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
-
 
             const doVrijeme =
                 `${String(sljedeciSat).padStart(2, "0")}:${String(sljedeciMin).padStart(2, "0")}`;
@@ -1056,7 +1179,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             row.innerHTML = `
-
                 <div class="schedule-time">
 
                     <strong>
@@ -1072,10 +1194,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="schedule-status">
 
-                    <div class="${
+                    <div class="status-text ${
                         zauzeto
-                            ? "status-text status-busy"
-                            : "status-text status-free"
+                            ? "status-busy"
+                            : "status-free"
                     }">
 
                         ${
@@ -1092,29 +1214,26 @@ document.addEventListener("DOMContentLoaded", () => {
                             ? ""
                             : `
                                 <a
-                                    href="tel:+387XXXXXXXXX"
+                                    href="tel:+38761745046"
                                     class="booking-phone"
                                 >
-                                    REZERVIŠI ODMAH
+                                    REZERVIŠI
                                 </a>
                             `
                     }
 
                 </div>
-
             `;
 
 
             schedule.appendChild(row);
-
         }
-
     }
 
 
-    // =========================================================
-    // FIREBASE — JAVNI RASPORED
-    // =========================================================
+    /* =========================================================
+       FIREBASE — JAVNI RASPORED
+    ========================================================= */
 
     onValue(
         terminiRef,
@@ -1124,16 +1243,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 snapshot.val() || {};
 
 
-            // Ako još nema odabranog datuma,
-            // napravi dane.
-
             if (!odabraniDatum) {
                 napraviDane();
             }
 
 
             prikaziRaspored();
+        },
+        error => {
 
+            console.error(
+                "Firebase greška:",
+                error
+            );
+
+            schedule.innerHTML = `
+                <div class="empty-message">
+                    <span>!</span>
+                    <p>
+                        Raspored trenutno nije moguće učitati.
+                    </p>
+                </div>
+            `;
         }
     );
 

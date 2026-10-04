@@ -820,6 +820,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".days"
             );
 
+            const prevDay = document.querySelector(".prev-day");
+const nextDay = document.querySelector(".next-day");
+
+if (prevDay && nextDay && daysContainer) {
+
+    prevDay.addEventListener("click", () => {
+        daysContainer.scrollBy({
+            left: -320,
+            behavior: "smooth"
+        });
+    });
+
+    nextDay.addEventListener("click", () => {
+        daysContainer.scrollBy({
+            left: 320,
+            behavior: "smooth"
+        });
+    });
+}
+
 
         /* =========================================
            KREIRAJ 7 DANA
@@ -937,8 +957,12 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
             block: "start"
         });
 
-        // zatvori mobilni meni ako je otvoren
-        document.body.classList.remove("menu-open");
+        // ZATVORI MOBILNI MENI
+        const menuToggle = document.getElementById("menuToggle");
+
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
     });
 });
 
@@ -1130,8 +1154,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
                     href="tel:+387XXXXXXXXX"
                     class="booking-phone"
                 >
-                    REZERVACIJE
-                    <span>061 123 456</span>
+                    REZERVIŠI ODMAH
                 </a>
             `
     }
